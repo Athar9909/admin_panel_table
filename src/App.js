@@ -10,6 +10,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Login />} />
           <Route path="/admin/login" element={<Login />} />
           <Route path="/admin/language-select" element={<Language />} />
           <Route path="/admin/dashboard" element={<Dashboard />} />
