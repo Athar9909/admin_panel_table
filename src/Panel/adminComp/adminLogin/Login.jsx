@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { adminLogin } from "./httpServicesAdmin/adminApis";
 import classNames from "classnames";
 import Swal from "sweetalert2";
+import logo from "../../assets/img/logo.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ const Login = () => {
                 <div className="row">
                   <div className="col-12 formheader mb-4">
                     <div className="text-center">
-                      <img src="../assets/img/logo.svg" alt="" />
+                      <img src={logo} alt="" />
                     </div>
                     <h1>Login for Admin Panel</h1>
                     <p>Please enter your email and password</p>

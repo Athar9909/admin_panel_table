@@ -1,55 +1,32 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import classNames from "classnames";
 import Profile from "../Profile";
+import { AllTakeawayOrders } from "../adminLogin/httpServicesAdmin/adminApis";
 
 const Dashboard = () => {
   const [slide, setSlide] = useState("Dash");
   const [sideBar, setSideBar] = useState();
   const [files, setFiles] = useState([]);
+  const [takeAway, setTakeAway] = useState([]);
+  const navigate = useNavigate();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  useEffect(() => {
+    getAllOrders();
+  }, []);
 
-  const onFileSelection = (e, key) => {
-    setFiles({ ...files, [key]: e.target.files[0] });
-  };
-
-  const onSubmit = async (data) => {
-    let addons = [];
-    // (selectedAddon.optionSelected || [])?.map((item) => {
-    //   addons.push(item?.value);
-    // });
-    // let formData = new FormData();
-    // formData.append("name", data?.name);
-    // formData.append("categoryId", data?.categoryId);
-    // formData.append("mainIngredients", JSON.stringify(data?.mainIngredients));
-    // formData.append("addOns", JSON.stringify(addons));
-    // formData.append("price", data?.price);
-    // formData.append("image", files?.cuisineImg);
-
-    // const res = await AddNewCuisine(formData);
-    // if (!res?.data?.error) {
-    //   Swal.fire({
-    //     title: res?.data?.message,
-    //     icon: "success",
-    //     confirmButtonText: "Okay",
-    //     confirmButtonColor: "#e25829",
-    //   });
-    //   document.getElementById("modalClose").click();
-    //   document.getElementById("reset1").click();
-    //   getAllCuisines();
-    //   setSelectedAddon([
-    //     {
-    //       optionSelected: [],
-    //     },
-    //   ]);
-    // }
+  const getAllOrders = async (key) => {
+    const { data } = await AllTakeawayOrders({
+      from: "",
+      to: "",
+      type: "Take Away",
+    });
+    if (!data?.error) {
+      let values = data?.results?.orders;
+      setTakeAway(values);
+    }
   };
 
   const getBarClick = (val) => {
@@ -146,7 +123,7 @@ const Dashboard = () => {
             <div className="col-12 design_outter_comman shadow">
               <div className="row comman_header justify-content-between">
                 <div className="col-auto">
-                  <h2>Latest Customers</h2>
+                  <h2>Latest Orders</h2>
                 </div>
               </div>
               <form
@@ -172,100 +149,43 @@ const Dashboard = () => {
                     <table className="table mb-0">
                       <thead>
                         <tr>
-                          <th>S.No.</th>
-                          <th>User NAME</th>
-                          <th>Email</th>
+                          <th>Order Id</th>
+                          <th>Restaurant Address</th>
+                          {/* <th>Customer Name</th> */}
                           <th>Mobile Number</th>
-                          <th>Status</th>
-                          <th>Registered At</th>
+                          {/* <th>Order Details</th> */}
+                          <th>Pickup Time</th>
+                          {/* <th>Status</th> */}
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>Mohd. Arbab</td>
-                          <td>xyz@gmail.com</td>
-                          <td>+20 9876543210</td>
-                          <td>
-                            <div className="d-flex align-items-center justify-content-center">
-                              <img
-                                className="me-1 status_img"
-                                src="assets/img/pending.png"
-                                alt=""
-                              />{" "}
-                              Pending
-                            </div>
-                          </td>
-                          <td>19 Jan 2022</td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>Mohd. Arbab</td>
-                          <td>xyz@gmail.com</td>
-                          <td>+20 9876543210</td>
-                          <td>
-                            <div className="d-flex align-items-center justify-content-center">
-                              <img
-                                className="me-1 status_img"
-                                src="assets/img/accpted.png"
-                                alt=""
-                              />{" "}
-                              Accepted
-                            </div>
-                          </td>
-                          <td>19 Jan 2022</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>Mohd. Arbab</td>
-                          <td>xyz@gmail.com</td>
-                          <td>+20 9876543210</td>
-                          <td>
-                            <div className="d-flex align-items-center justify-content-center">
-                              <img
-                                className="me-1 status_img"
-                                src="assets/img/accpted.png"
-                                alt=""
-                              />{" "}
-                              Accepted
-                            </div>
-                          </td>
-                          <td>19 Jan 2022</td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>Mohd. Arbab</td>
-                          <td>xyz@gmail.com</td>
-                          <td>+20 9876543210</td>
-                          <td>
-                            <div className="d-flex align-items-center justify-content-center">
-                              <img
-                                className="me-1 status_img"
-                                src="assets/img/pending.png"
-                                alt=""
-                              />{" "}
-                              Pending
-                            </div>
-                          </td>
-                          <td>19 Jan 2022</td>
-                        </tr>
-                        <tr>
-                          <td>5</td>
-                          <td>Mohd. Arbab</td>
-                          <td>xyz@gmail.com</td>
-                          <td>+20 9876543210</td>
-                          <td>
-                            <div className="d-flex align-items-center justify-content-center">
-                              <img
-                                className="me-1 status_img"
-                                src="assets/img/pending.png"
-                                alt=""
-                              />{" "}
-                              Pending
-                            </div>
-                          </td>
-                          <td>19 Jan 2022</td>
-                        </tr>
+                        {takeAway?.map((item, index) => (
+                          <tr>
+                            <td>{item?.orderId}</td>
+                            <td>
+                              {item?.restaurantId?.restaurant_address?.slice(
+                                0,
+                                25
+                              )}
+                              ...
+                            </td>
+                            <td>{item?.restaurantId?.phone_number}</td>
+
+                            <td>{item?.createdAt?.slice(0, 10)}</td>
+                            <td>
+                              <a
+                                className="comman_btn table_viewbtn"
+                                onClick={() =>
+                                  navigate(
+                                    `/admin/dashboard/orders/Dining-view/${item?._id}`
+                                  )
+                                }>
+                                <span>View</span>
+                              </a>
+                            </td>
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   </div>

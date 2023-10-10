@@ -83,12 +83,12 @@ const Restaurant = () => {
         <div className="admin_panel_data height_adjust">
           <div className="row dashboard_part justify-content-center">
             <div className="col-12 mb-4 d-flex align-items-center justify-content-end">
-              <button className="export_impo shadow me-3">
+              {/* <button className="export_impo shadow me-3">
                 <img src="assets/img/import.svg" alt="" /> Import
               </button>
               <button className="export_impo shadow me-3">
                 <img src="assets/img/share-forward-line.svg" alt="" /> Export
-              </button>
+              </button> */}
               <button
                 data-bs-toggle="modal"
                 data-bs-target="#AddResto"

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import logo from "../assets/img/logo.svg";
+import logo from "../assets/img/logo.png";
 import dash from "../assets/img/dashboard.svg";
 import resto from "../assets/img/restarunt-management.svg";
 import take from "../assets/img/takeaway.svg";
@@ -91,12 +91,12 @@ const Sidebar = ({ slide, getBarClick, getBar }) => {
 
             <li>
               <a
-                 className={
+                className={
                   slide === "takeManage"
                     ? "active text-decoration-none"
                     : " text-decoration-none"
                 }
-                onClick={() => navigate("/admin/dashboard")}>
+                onClick={() => navigate("/admin/dashboard/orders/takeaway")}>
                 <img src={take} alt="" />
                 Takeaway Order Management
               </a>
@@ -108,7 +108,7 @@ const Sidebar = ({ slide, getBarClick, getBar }) => {
                     ? "active text-decoration-none"
                     : " text-decoration-none"
                 }
-                onClick={() => navigate("/admin/dashboard")}>
+                onClick={() => navigate("/admin/dashboard/orders/Dining")}>
                 <img src={Dine} alt="" />
                 Dining Booking Management
               </a>
