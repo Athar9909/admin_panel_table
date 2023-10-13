@@ -7,6 +7,7 @@ import Profile from "../Profile";
 import {
   AddNewRestaurant,
   AllRestaurants,
+  UpdateAdminRestaurant,
   getRestaurantDetails,
 } from "../adminLogin/httpServicesAdmin/adminApis";
 import Swal from "sweetalert2";
@@ -65,7 +66,7 @@ const ViewRestaurant = () => {
     formData.append("logo", files?.logo);
     formData.append("cover_image", files?.cover);
 
-    const res = await AddNewRestaurant(formData);
+    const res = await UpdateAdminRestaurant(formData);
     if (!res?.data?.error) {
       Swal.fire({
         title: res?.data?.message,
@@ -177,7 +178,7 @@ const ViewRestaurant = () => {
                       <div className="form-group col-4">
                         <label htmlFor="">Restaurant Name</label>
                         <input
-                          {...register("name", { required: true })}
+                          {...register("name", { required: false })}
                           type="text"
                           className={classNames("form-control", {
                             "is-invalid": errors.name,
@@ -195,7 +196,7 @@ const ViewRestaurant = () => {
                       <div className="form-group col-8">
                         <label htmlFor="">Restaurant Address</label>
                         <input
-                          {...register("address", { required: true })}
+                          {...register("address", { required: false })}
                           type="text"
                           className={classNames("form-control", {
                             "is-invalid": errors.address,
@@ -213,7 +214,7 @@ const ViewRestaurant = () => {
                       <div className="form-group col-4">
                         <label htmlFor="">Country Code</label>
                         <input
-                          {...register("code", { required: true })}
+                          {...register("code", { required: false })}
                           type="number"
                           className={classNames("form-control", {
                             "is-invalid": errors.code,
@@ -231,7 +232,7 @@ const ViewRestaurant = () => {
                       <div className="form-group col-8">
                         <label htmlFor="">Restaurant Description</label>
                         <input
-                          {...register("desc", { required: true })}
+                          {...register("desc", { required: false })}
                           type="text"
                           className={classNames("form-control", {
                             "is-invalid": errors.desc,
@@ -249,7 +250,7 @@ const ViewRestaurant = () => {
                       <div className="form-group col-4">
                         <label htmlFor="">Owner Name</label>
                         <input
-                          {...register("owner", { required: true })}
+                          {...register("owner", { required: false })}
                           type="text"
                           className={classNames("form-control", {
                             "is-invalid": errors.owner,
@@ -319,7 +320,7 @@ const ViewRestaurant = () => {
                       <div className="form-group col-4">
                         <label htmlFor="">Opening Time</label>
                         <input
-                          {...register("opTime", { required: true })}
+                          {...register("opTime", { required: false })}
                           type="text"
                           className={classNames("form-control", {
                             "is-invalid": errors.opTime,
@@ -337,7 +338,7 @@ const ViewRestaurant = () => {
                       <div className="form-group col-4">
                         <label htmlFor="">Closing Time</label>
                         <input
-                          {...register("closeTime", { required: true })}
+                          {...register("closeTime", { required: false })}
                           type="text"
                           className={classNames("form-control", {
                             "is-invalid": errors.closeTime,
