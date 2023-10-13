@@ -150,8 +150,6 @@ const Restaurant = () => {
                               <th>Name</th>
                               <th>Email</th>
                               <th>Mobile Number</th>
-                              <th>Status</th>
-                              <th>Balance</th>
                               <th>Created At</th>
                               <th>Action</th>
                             </tr>
@@ -175,8 +173,6 @@ const Restaurant = () => {
                                 <td>{item?.restaurantId?.restaurant_name}</td>
                                 <td>{item?.restaurantId?.email}</td>
                                 <td>{item?.phone_number}</td>
-                                <td>Approved</td>
-                                <td>701.18 SAR</td>
                                 <td>{item?.createdAt?.slice(0, 10)}</td>
                                 <td>
                                   <a
