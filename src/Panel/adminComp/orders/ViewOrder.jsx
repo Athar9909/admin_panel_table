@@ -134,6 +134,16 @@ const ViewOrder = () => {
                             />
                           </div>
                           <div className="form-group col-6">
+                            <label htmlFor="">Order Amount</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              defaultValue={order?.total}
+                              name="price"
+                              id="price"
+                            />
+                          </div>
+                          <div className="form-group col-6">
                             <label htmlFor="">Pickup Time</label>
                             <input
                               type="text"
