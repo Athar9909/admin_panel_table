@@ -6,12 +6,13 @@ import classNames from "classnames";
 import Profile from "../Profile";
 import {
   AllTakeawayOrders,
+  AllTransactions,
 } from "../adminLogin/httpServicesAdmin/adminApis";
 
-const Takeaway = () => {
-  const [slide, setSlide] = useState("takeManage");
+const AllTransaction = () => {
+  const [slide, setSlide] = useState("transManage");
   const [sideBar, setSideBar] = useState();
-  const [takeAway, setTakeAway] = useState([]);
+  const [List, setList] = useState([]);
   const navigate = useNavigate();
   const {
     register,
@@ -20,18 +21,18 @@ const Takeaway = () => {
   } = useForm();
 
   useEffect(() => {
-    getAllOrders();
+    getAllTransaction();
   }, []);
 
-  const getAllOrders = async (key) => {
-    const { data } = await AllTakeawayOrders({
+  const getAllTransaction = async (key) => {
+    const { data } = await AllTransactions({
       from: "",
       to: "",
-      type: "Take Away",
+      //   type: "Take Away",
     });
     if (!data?.error) {
-      let values = data?.results?.orders;
-      setTakeAway(values);
+      let values = data?.results?.transactions;
+      setList(values);
     }
   };
 
@@ -53,7 +54,7 @@ const Takeaway = () => {
                 <div className="col-12 design_outter_comman shadow">
                   <div className="row comman_header justify-content-between">
                     <div className="col">
-                      <h2>Takeaway Order Management</h2>
+                      <h2>Transaction Management</h2>
                     </div>
                     <div className="col-3"></div>
                   </div>
@@ -80,40 +81,45 @@ const Takeaway = () => {
                         <table className="table mb-0">
                           <thead>
                             <tr>
+                              <th>Date</th>
+                              <th>Restaurant Name</th>
+                              <th>Table Id</th>
+                              <th>Order Type</th>
+                              <th>Transaction Id</th>
                               <th>Order Id</th>
-                              <th>Restaurant Address</th>
-                              {/* <th>Customer Name</th> */}
-                              <th>Mobile Number</th>
-                              {/* <th>Order Details</th> */}
-                              <th>Pickup Time</th>
-                              {/* <th>Status</th> */}
-                              <th>Action</th>
+                              <th>Amount</th>
                             </tr>
                           </thead>
                           <tbody>
-                            {takeAway?.map((item, index) => (
+                            {List?.map((item, index) => (
                               <tr>
-                                <td>{item?.orderId}</td>
-                                <td>{item?.restaurantId?.restaurant_address?.slice(0,25)}...</td>
-                                <td>{item?.restaurantId?.phone_number}</td>
-                              
                                 <td>{item?.createdAt?.slice(0, 10)}</td>
-                                <td>
+                                <td>{item?.restaurantId?.restaurant_name}</td>
+                                <td>{item?.orderId?.tableId?.name}</td>
+                                <td>{item?.type}</td>
+                                <td>{item?.transactionId}</td>
+                                <td>{item?.orderId?.orderId}</td>
+                                <td>{item?.orderId?.total}</td>
+                                {/* <td>
                                   <a
                                     className="comman_btn table_viewbtn"
-                                    onClick={() =>
-                                      navigate(
-                                        `/admin/dashboard/orders/view/${item?._id}`
-                                      )
-                                    }>
+                                    href="transaction-management-view.html">
                                     <span>View</span>
                                   </a>
-                                </td>
+                                </td> */}
                               </tr>
                             ))}
                           </tbody>
                         </table>
                       </div>
+                    </div>
+                  </div>
+                  <div className="row Total_amt mx-0 py-3">
+                    <div className="col-6">
+                      <strong>Total Amount: </strong>
+                    </div>
+                    <div className="col-6 text-end">
+                      <span>500 SAR</span>
                     </div>
                   </div>
                 </div>
@@ -126,4 +132,4 @@ const Takeaway = () => {
   );
 };
 
-export default Takeaway;
+export default AllTransaction;

@@ -178,7 +178,7 @@ const Dashboard = () => {
                                 className="comman_btn table_viewbtn"
                                 onClick={() =>
                                   navigate(
-                                    `/admin/dashboard/orders/Dining-view/${item?._id}`
+                                    `/admin/dashboard/orders/view/${item?._id}`
                                   )
                                 }>
                                 <span>View</span>

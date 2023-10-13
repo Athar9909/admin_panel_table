@@ -41,9 +41,9 @@ const ViewRestaurant = () => {
         name: values?.restaurantId?.restaurant_name,
         address: values?.restaurantId?.restaurant_address,
         desc: values?.description,
-        country_code: values?.country_code,
-        opTime: values?.owner,
-        closeTime: values?.closiing_time,
+        code: values?.country_code,
+        opTime: values?.restaurantId?.opening_time,
+        closeTime: values?.restaurantId?.closing_time,
         email: values?.restaurantId?.email,
         number: values?.phone_number,
         password: values?.password,
@@ -124,8 +124,8 @@ const ViewRestaurant = () => {
                             <img
                               class="profile-pic"
                               src={
-                                restaurants?.logo
-                                  ? restaurants?.logo
+                                restaurants?.restaurantId?.restaurant_logo
+                                  ? restaurants?.restaurantId?.restaurant_logo
                                   : profilePic
                               }
                             />
@@ -152,8 +152,8 @@ const ViewRestaurant = () => {
                             <img
                               class="profile-pic"
                               src={
-                                restaurants?.cover
-                                  ? restaurants?.cover
+                                restaurants?.restaurantId?.cover_image
+                                  ? restaurants?.restaurantId?.cover_image
                                   : profilePic
                               }
                             />

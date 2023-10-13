@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.7ce64d89.css",
-    "main.js": "/static/js/main.dd48130d.js",
+    "main.js": "/static/js/main.f12ac364.js",
     "static/media/siderbar.png": "/static/media/siderbar.3491e24083c1c0f2d915.png",
     "static/media/verification_bg.png": "/static/media/verification_bg.3491e24083c1c0f2d915.png",
     "static/media/fa-solid-900.ttf": "/static/media/fa-solid-900.d75e3fd1eb12e9bd6655.ttf",
@@ -37,15 +37,16 @@
     "index.html": "/index.html",
     "static/media/logout-circle-r-line.svg": "/static/media/logout-circle-r-line.a0d15c70a1d9ad284a7501295bfdcb5e.svg",
     "static/media/dashboard.svg": "/static/media/dashboard.b5d4ddbc2de3ab8724d68ef93e51fd37.svg",
+    "static/media/transaction.svg": "/static/media/transaction.4ffc316c789a103b051700506c6c8c91.svg",
     "static/media/dining.svg": "/static/media/dining.efc1f06da2b8c29be36c7d1b735ff9c2.svg",
     "static/media/restarunt-management.svg": "/static/media/restarunt-management.dad4f2935a1e92a31c356a42d33091ac.svg",
     "static/media/check-line.svg": "/static/media/check-line.e477cb8f4f2fadf96339.svg",
     "static/media/bar-chart-horizontal-line.svg": "/static/media/bar-chart-horizontal-line.b09f346aa5b27adb8e1ca5237017595b.svg",
     "main.7ce64d89.css.map": "/static/css/main.7ce64d89.css.map",
-    "main.dd48130d.js.map": "/static/js/main.dd48130d.js.map"
+    "main.f12ac364.js.map": "/static/js/main.f12ac364.js.map"
   },
   "entrypoints": [
     "static/css/main.7ce64d89.css",
-    "static/js/main.dd48130d.js"
+    "static/js/main.f12ac364.js"
   ]
 }

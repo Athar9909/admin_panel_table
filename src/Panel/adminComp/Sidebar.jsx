@@ -6,6 +6,7 @@ import dash from "../assets/img/dashboard.svg";
 import resto from "../assets/img/restarunt-management.svg";
 import take from "../assets/img/takeaway.svg";
 import Dine from "../assets/img/dining.svg";
+import transac from "../assets/img/transaction.svg";
 import log from "../assets/img/logout-circle-r-line.svg";
 const Sidebar = ({ slide, getBarClick, getBar }) => {
   const navigate = useNavigate();
@@ -113,6 +114,18 @@ const Sidebar = ({ slide, getBarClick, getBar }) => {
                 Dining Booking Management
               </a>
             </li>
+            <li>
+              <a
+                className={
+                  slide === "transManage"
+                    ? "active text-decoration-none"
+                    : " text-decoration-none"
+                }
+                onClick={() => navigate("/admin/dashboard/transactions")}>
+                <img src={transac} alt="" />
+                Transaction Management
+              </a>
+            </li>
             {/* <li>
               <a className="" href="dining-with-food-management.html">
                 <img src="assets/img/food.svg" alt="" />
@@ -137,12 +150,7 @@ const Sidebar = ({ slide, getBarClick, getBar }) => {
                 Payout Restaurant Management
               </a>
             </li>
-            <li>
-              <a className="" href="transaction-management.html">
-                <img src="assets/img/transaction.svg" alt="" />
-                Transaction Management
-              </a>
-            </li>
+          
             <li>
               <a className="" href="promo-code-management.html">
                 <img src="assets/img/promocode.svg" alt="" />

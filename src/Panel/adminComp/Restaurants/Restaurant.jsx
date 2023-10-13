@@ -49,7 +49,7 @@ const Restaurant = () => {
     formData.append("owner_name", data?.owner);
     formData.append("country_code", data?.code);
     formData.append("opening_time", data?.opTime);
-    formData.append("closiing_time", data?.closeTime);
+    formData.append("closing_time", data?.closeTime);
     formData.append("email", data?.email);
     formData.append("phone_number", data?.number);
     formData.append("password", data?.password);
