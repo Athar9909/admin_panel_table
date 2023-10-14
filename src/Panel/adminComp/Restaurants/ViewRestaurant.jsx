@@ -41,6 +41,7 @@ const ViewRestaurant = () => {
       reset({
         name: values?.restaurantId?.restaurant_name,
         address: values?.restaurantId?.restaurant_address,
+        owner: values?.restaurantId?.owner_name,
         desc: values?.description,
         code: values?.country_code,
         opTime: values?.restaurantId?.opening_time,
@@ -57,14 +58,22 @@ const ViewRestaurant = () => {
     formData.append("restaurant_name", data?.name);
     formData.append("restaurant_address", data?.address);
     formData.append("restaurant_description", data?.desc);
+    formData.append("country_code", data?.code);
     formData.append("owner_name", data?.owner);
     formData.append("opening_time", data?.opTime);
     formData.append("closiing_time", data?.closeTime);
     formData.append("email", data?.email);
     formData.append("phone_number", data?.number);
     formData.append("password", data?.password);
-    formData.append("logo", files?.logo);
-    formData.append("cover_image", files?.cover);
+    formData.append("restaurantId", restaurants?.restaurantId?._id);
+    formData.append(
+      "logo",
+      files?.logo ? files?.logo : restaurants?.restaurantId?.restaurant_logo
+    );
+    formData.append(
+      "cover_image",
+      files?.cover ? files?.cover : restaurants?.restaurantId?.cover_image
+    );
 
     const res = await UpdateAdminRestaurant(formData);
     if (!res?.data?.error) {
@@ -74,8 +83,6 @@ const ViewRestaurant = () => {
         confirmButtonText: "Okay",
         confirmButtonColor: "#e25829",
       });
-      document.getElementById("modalClose").click();
-      document.getElementById("reset1").click();
       RestaurantsDetails();
     }
   };
@@ -303,7 +310,7 @@ const ViewRestaurant = () => {
                       <div className="form-group col-4">
                         <label htmlFor="">Password</label>
                         <input
-                          {...register("password", { required: true })}
+                          {...register("password", { required: false })}
                           type="password"
                           className={classNames("form-control", {
                             "is-invalid": errors.password,

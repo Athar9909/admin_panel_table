@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.7ce64d89.css",
-    "main.js": "/static/js/main.367bdb60.js",
+    "main.css": "/static/css/main.80970311.css",
+    "main.js": "/static/js/main.d3726d9e.js",
     "static/media/siderbar.png": "/static/media/siderbar.3491e24083c1c0f2d915.png",
     "static/media/verification_bg.png": "/static/media/verification_bg.3491e24083c1c0f2d915.png",
     "static/media/fa-solid-900.ttf": "/static/media/fa-solid-900.d75e3fd1eb12e9bd6655.ttf",
@@ -28,9 +28,8 @@
     "static/media/Poppins-Black.woff2": "/static/media/Poppins-Black.9f8a4a5f1e0fe91ec9f7.woff2",
     "static/media/Poppins-Thin.woff2": "/static/media/Poppins-Thin.852bafc278ec1d018963.woff2",
     "static/media/fa-regular-400.woff2": "/static/media/fa-regular-400.b041b1fa4fe241b23445.woff2",
-    "static/media/logo.png": "/static/media/logo.06e8ddbbdc460eab94ab.png",
     "static/media/united-kingdom.png": "/static/media/united-kingdom.b9a2ba74e5f8a55977e7.png",
-    "static/media/logo.svg": "/static/media/logo.32ed47d5034a33fc437878fc92494216.svg",
+    "static/media/logoNN.png": "/static/media/logoNN.bd290dc780562f6d2b3b.png",
     "static/media/fa-v4compatibility.ttf": "/static/media/fa-v4compatibility.c6a0c95b0a95c4553700.ttf",
     "static/media/fa-v4compatibility.woff2": "/static/media/fa-v4compatibility.1bac2991f3dbfa237aec.woff2",
     "static/media/takeaway.svg": "/static/media/takeaway.69ba6b93c47704983dfd6278894d7d50.svg",
@@ -42,11 +41,11 @@
     "static/media/restarunt-management.svg": "/static/media/restarunt-management.dad4f2935a1e92a31c356a42d33091ac.svg",
     "static/media/check-line.svg": "/static/media/check-line.e477cb8f4f2fadf96339.svg",
     "static/media/bar-chart-horizontal-line.svg": "/static/media/bar-chart-horizontal-line.b09f346aa5b27adb8e1ca5237017595b.svg",
-    "main.7ce64d89.css.map": "/static/css/main.7ce64d89.css.map",
-    "main.367bdb60.js.map": "/static/js/main.367bdb60.js.map"
+    "main.80970311.css.map": "/static/css/main.80970311.css.map",
+    "main.d3726d9e.js.map": "/static/js/main.d3726d9e.js.map"
   },
   "entrypoints": [
-    "static/css/main.7ce64d89.css",
-    "static/js/main.367bdb60.js"
+    "static/css/main.80970311.css",
+    "static/js/main.d3726d9e.js"
   ]
 }

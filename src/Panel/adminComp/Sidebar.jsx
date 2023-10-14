@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import logo from "../assets/img/logo.png";
+import logo from "../assets/img/logoNN.png";
 import dash from "../assets/img/dashboard.svg";
 import resto from "../assets/img/restarunt-management.svg";
 import take from "../assets/img/takeaway.svg";

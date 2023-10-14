@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { adminLogin } from "./httpServicesAdmin/adminApis";
 import classNames from "classnames";
 import Swal from "sweetalert2";
-import logo from "../../assets/img/logo.png";
+import logo from "../../assets/img/logoNN.png";
 
 const Login = () => {
   const navigate = useNavigate();

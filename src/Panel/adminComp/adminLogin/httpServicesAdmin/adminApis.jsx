@@ -68,7 +68,7 @@ export async function AddNewRestaurant(formData) {
 export async function UpdateAdminRestaurant(formData) {
   try {
     const { data } = await adminHttpService.post(
-      `${process.env.REACT_APP_APIENDPOINT}api/admin/addRestaurant`,
+      `${process.env.REACT_APP_APIENDPOINT}api/admin/updateRestaurant`,
       formData
     );
     console.log(data);
