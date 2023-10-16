@@ -5,8 +5,6 @@ import { useForm } from "react-hook-form";
 import classNames from "classnames";
 import Profile from "../Profile";
 import {
-  AddNewRestaurant,
-  AllRestaurants,
   UpdateAdminRestaurant,
   getRestaurantDetails,
 } from "../adminLogin/httpServicesAdmin/adminApis";
@@ -17,6 +15,9 @@ const ViewRestaurant = () => {
   const [sideBar, setSideBar] = useState();
   const [files, setFiles] = useState([]);
   const [restaurants, setRestaurants] = useState([]);
+  const [logo, setLogo] = useState([]);
+  const [cover, setCover] = useState([]);
+
   const {
     register,
     handleSubmit,
@@ -29,10 +30,29 @@ const ViewRestaurant = () => {
     RestaurantsDetails();
   }, []);
 
-  const onFileSelection = (e, key) => {
-    setFiles({ ...files, [key]: e.target.files[0] });
+  const onFileSelectionLogo = async (e, key, ind) => {
+    setLogo([{ [key]: e.target.files[0] }]);
+
+    if (e.target.files[0]) {
+      var picture = new FileReader();
+      picture.readAsDataURL(e.target.files[0]);
+      picture.addEventListener("load", function (event) {
+        document.getElementById(ind).setAttribute("src", event.target.result);
+      });
+    }
   };
 
+  const onFileSelectionCover = async (e, key, ind) => {
+    setCover([{ [key]: e.target.files[0] }]);
+    if (e.target.files[0]) {
+      var picture = new FileReader();
+      picture.readAsDataURL(e.target.files[0]);
+      picture.addEventListener("load", function (event) {
+        document.getElementById(ind).setAttribute("src", event.target.result);
+      });
+    }
+  };
+  console.log(files);
   const RestaurantsDetails = async (key) => {
     const { data } = await getRestaurantDetails(id);
     if (!data?.error) {
@@ -68,11 +88,11 @@ const ViewRestaurant = () => {
     formData.append("restaurantId", restaurants?.restaurantId?._id);
     formData.append(
       "logo",
-      files?.logo ? files?.logo : restaurants?.restaurantId?.restaurant_logo
+      logo[0]?.logo ? logo[0]?.logo : restaurants?.restaurantId?.restaurant_logo
     );
     formData.append(
       "cover_image",
-      files?.cover ? files?.cover : restaurants?.restaurantId?.cover_image
+      cover[0]?.cover ? cover[0]?.cover : restaurants?.restaurantId?.cover_image
     );
 
     const res = await UpdateAdminRestaurant(formData);
@@ -131,6 +151,7 @@ const ViewRestaurant = () => {
                           <div class="circle">
                             <img
                               class="profile-pic"
+                              id="logoImg"
                               src={
                                 restaurants?.restaurantId?.restaurant_logo
                                   ? restaurants?.restaurantId?.restaurant_logo
@@ -149,6 +170,9 @@ const ViewRestaurant = () => {
                               type="file"
                               accept="image/*"
                               id="uploaderOne"
+                              onChange={(e) =>
+                                onFileSelectionLogo(e, "logo", "logoImg")
+                              }
                             />
                           </div>
                         </div>
@@ -158,6 +182,7 @@ const ViewRestaurant = () => {
                         <div class="account_profile position-relative d-inline-flex">
                           <div class="circle">
                             <img
+                              id="coverImg"
                               class="profile-pic"
                               src={
                                 restaurants?.restaurantId?.cover_image
@@ -177,6 +202,9 @@ const ViewRestaurant = () => {
                               type="file"
                               accept="image/*"
                               id="uploaderTwo"
+                              onChange={(e) =>
+                                onFileSelectionCover(e, "cover", "coverImg")
+                              }
                             />
                           </div>
                         </div>
