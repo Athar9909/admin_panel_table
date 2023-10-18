@@ -32,8 +32,7 @@ const Restaurant = () => {
 
   const getAllRestaurants = async (key) => {
     const { data } = await AllRestaurants({
-      from: "",
-      to: "",
+      search: key ? key : "",
     });
     if (!data?.error) {
       let values = data?.results?.restaurants;
@@ -120,12 +119,19 @@ const Restaurant = () => {
                     </div>
                     <div className="form-group mb-0 col">
                       <label htmlFor="">Search</label>
-                      <input type="search" className="form-control" />
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Search by restaurant name"
+                        onChange={(e) => {
+                          getAllRestaurants(e.target.value);
+                        }}
+                      />
                     </div>
                     <div className="form-group mb-0 col-auto">
-                      <button className="comman_btn">
+                      <a className="comman_btn text-decoration-none">
                         <span>Search</span>
-                      </button>
+                      </a>
                     </div>
                   </form>
                   <div className="row">
@@ -436,7 +442,10 @@ const Restaurant = () => {
                   <button className="comman_btn d-inline-flex" type="submit">
                     <span>Save Details</span>
                   </button>
-                  <button className="comman_btn d-inline-flex d-none" id="reset1" type="reset">
+                  <button
+                    className="comman_btn d-inline-flex d-none"
+                    id="reset1"
+                    type="reset">
                     <span>Sreser</span>
                   </button>
                 </div>

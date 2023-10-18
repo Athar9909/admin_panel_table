@@ -12,21 +12,30 @@ const Dashboard = () => {
   const [files, setFiles] = useState([]);
   const [takeAway, setTakeAway] = useState([]);
   const navigate = useNavigate();
+  const [values, setValues] = useState({ from: "", to: "" });
 
   useEffect(() => {
     getAllOrders();
   }, []);
 
-  const getAllOrders = async (key) => {
+  const getAllOrders = async () => {
     const { data } = await AllTakeawayOrders({
-      from: "",
-      to: "",
-      type: "Take Away",
+      from: values?.from,
+      till: values?.to,
     });
     if (!data?.error) {
       let values = data?.results?.orders;
       setTakeAway(values);
+      setValues({ from: "", to: "" });
     }
+  };
+
+  const handleDate = (e) => {
+    const value = e.target.value;
+    setValues({
+      ...values,
+      [e.target.name]: value,
+    });
   };
 
   const getBarClick = (val) => {
@@ -131,16 +140,34 @@ const Dashboard = () => {
                 action="">
                 <div className="form-group mb-0 col-5">
                   <label htmlFor="">From</label>
-                  <input type="date" className="form-control" />
+                  <input
+                    type="date"
+                    className="form-control"
+                    name="from"
+                    id="dashFrom"
+                    value={values.from}
+                    onChange={handleDate}
+                  />
                 </div>
                 <div className="form-group mb-0 col-5">
                   <label htmlFor="">To</label>
-                  <input type="date" className="form-control" />
+                  <input
+                    type="date"
+                    className="form-control"
+                    name="to"
+                    id="dashTo"
+                    value={values.to}
+                    onChange={handleDate}
+                  />
                 </div>
                 <div className="form-group mb-0 col-auto">
-                  <button className="comman_btn">
+                  <a
+                    onClick={() => {
+                      getAllOrders();
+                    }}
+                    className="comman_btn text-decoration-none">
                     <span>Search</span>
-                  </button>
+                  </a>
                 </div>
               </form>
               <div className="row">

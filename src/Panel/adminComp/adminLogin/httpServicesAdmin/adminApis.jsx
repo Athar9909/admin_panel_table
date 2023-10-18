@@ -96,10 +96,10 @@ export async function UpdateAdminRestaurant(formData) {
   }
 }
 
-export async function AllRestaurants() {
+export async function AllRestaurants(formdata) {
   try {
     const { data } = await adminHttpService.post(
-      `${process.env.REACT_APP_APIENDPOINT}api/admin/getBranches`
+      `${process.env.REACT_APP_APIENDPOINT}api/admin/getBranches`,formdata
     );
     console.log(data);
     if (data?.error) {

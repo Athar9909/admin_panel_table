@@ -4,20 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import classNames from "classnames";
 import Profile from "../Profile";
-import {
-  AllTakeawayOrders,
-} from "../adminLogin/httpServicesAdmin/adminApis";
+import { AllTakeawayOrders } from "../adminLogin/httpServicesAdmin/adminApis";
 
 const Takeaway = () => {
   const [slide, setSlide] = useState("takeManage");
   const [sideBar, setSideBar] = useState();
   const [takeAway, setTakeAway] = useState([]);
+  const [values, setValues] = useState({ from: "", to: "" });
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
   useEffect(() => {
     getAllOrders();
@@ -25,14 +19,23 @@ const Takeaway = () => {
 
   const getAllOrders = async (key) => {
     const { data } = await AllTakeawayOrders({
-      from: "",
-      to: "",
+      from: values?.from,
+      till: values?.to,
       type: "Take Away",
     });
     if (!data?.error) {
       let values = data?.results?.orders;
       setTakeAway(values);
+      setValues({ from: "", to: "" });
     }
+  };
+
+  const handleDate = (e) => {
+    const value = e.target.value;
+    setValues({
+      ...values,
+      [e.target.name]: value,
+    });
   };
 
   const getBarClick = (val) => {
@@ -62,16 +65,34 @@ const Takeaway = () => {
                     action="">
                     <div className="form-group mb-0 col-5">
                       <label htmlFor="">From</label>
-                      <input type="date" className="form-control" />
+                      <input
+                        type="date"
+                        className="form-control"
+                        name="from"
+                        id="dashFrom"
+                        value={values.from}
+                        onChange={handleDate}
+                      />
                     </div>
                     <div className="form-group mb-0 col-5">
                       <label htmlFor="">To</label>
-                      <input type="date" className="form-control" />
+                      <input
+                        type="date"
+                        className="form-control"
+                        name="to"
+                        id="dashTo"
+                        value={values.to}
+                        onChange={handleDate}
+                      />
                     </div>
-                    <div className="form-group mb-0 col-2">
-                      <button className="comman_btn w-100 d-flex justify-content-center">
+                    <div className="form-group mb-0 col-auto">
+                      <a
+                        onClick={() => {
+                          getAllOrders();
+                        }}
+                        className="comman_btn text-decoration-none">
                         <span>Search</span>
-                      </button>
+                      </a>
                     </div>
                   </form>
                   <div className="row">
@@ -94,9 +115,15 @@ const Takeaway = () => {
                             {takeAway?.map((item, index) => (
                               <tr>
                                 <td>{item?.orderId}</td>
-                                <td>{item?.restaurantId?.restaurant_address?.slice(0,25)}...</td>
+                                <td>
+                                  {item?.restaurantId?.restaurant_address?.slice(
+                                    0,
+                                    25
+                                  )}
+                                  ...
+                                </td>
                                 <td>{item?.restaurantId?.phone_number}</td>
-                              
+
                                 <td>{item?.createdAt?.slice(0, 10)}</td>
                                 <td>
                                   <a

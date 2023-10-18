@@ -17,6 +17,7 @@ const ViewRestaurant = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [logo, setLogo] = useState([]);
   const [cover, setCover] = useState([]);
+  let { id } = useParams();
 
   const {
     register,
@@ -25,7 +26,6 @@ const ViewRestaurant = () => {
     reset,
   } = useForm();
 
-  let { id } = useParams();
   useEffect(() => {
     RestaurantsDetails();
   }, []);
