@@ -32,6 +32,97 @@ export async function adminLogin(formData) {
   }
 }
 
+export async function adminForgotPass(formData) {
+  try {
+    const { data } = await adminHttpService.post(
+      `${process.env.REACT_APP_APIENDPOINT}api/admin/forgotPassword`,
+      formData
+    );
+    console.log(data);
+    if (data?.error) {
+      Swal.fire({
+        title: data?.message,
+        icon: "error",
+        confirmButtonText: "Okay",
+        confirmButtonColor: "#e25829",
+      });
+    }
+    return { data };
+  } catch (error) {
+    if (error.response) {
+      console.log(error?.response);
+      Swal.fire({
+        title: "Error!",
+        text: "",
+        icon: "error",
+        confirmButtonText: "Okay",
+        confirmButtonColor: "#e25829",
+      });
+    }
+    return { error };
+  }
+}
+export async function adminVerifyOtp(formData) {
+  try {
+    const { data } = await adminHttpService.post(
+      `${process.env.REACT_APP_APIENDPOINT}api/admin/verifyOTP`,
+      formData
+    );
+    console.log(data);
+    if (data?.error) {
+      Swal.fire({
+        title: data?.message,
+        icon: "error",
+        confirmButtonText: "Okay",
+        confirmButtonColor: "#e25829",
+      });
+    }
+    return { data };
+  } catch (error) {
+    if (error.response) {
+      console.log(error?.response);
+      Swal.fire({
+        title: "Error!",
+        text: "",
+        icon: "error",
+        confirmButtonText: "Okay",
+        confirmButtonColor: "#e25829",
+      });
+    }
+    return { error };
+  }
+}
+export async function adminResetPass(formData) {
+  try {
+    const { data } = await adminHttpService.post(
+      `${process.env.REACT_APP_APIENDPOINT}api/admin/updatePassword`,
+      formData
+    );
+    console.log(data);
+    if (data?.error) {
+      Swal.fire({
+        title: data?.message,
+        icon: "error",
+        confirmButtonText: "Okay",
+        confirmButtonColor: "#e25829",
+      });
+    }
+    return { data };
+  } catch (error) {
+    if (error.response) {
+      console.log(error?.response);
+      Swal.fire({
+        title: "Error!",
+        text: "",
+        icon: "error",
+        confirmButtonText: "Okay",
+        confirmButtonColor: "#e25829",
+      });
+    }
+    return { error };
+  }
+}
+
 // dash api
 
 export async function AddNewRestaurant(formData) {
@@ -99,7 +190,8 @@ export async function UpdateAdminRestaurant(formData) {
 export async function AllRestaurants(formdata) {
   try {
     const { data } = await adminHttpService.post(
-      `${process.env.REACT_APP_APIENDPOINT}api/admin/getBranches`,formdata
+      `${process.env.REACT_APP_APIENDPOINT}api/admin/getBranches`,
+      formdata
     );
     console.log(data);
     if (data?.error) {
@@ -555,6 +647,34 @@ export async function AllTransactions(formData) {
     const { data } = await adminHttpService.post(
       `${process.env.REACT_APP_APIENDPOINT}api/admin/getTransactions`,
       formData
+    );
+    if (data?.error) {
+      Swal.fire({
+        title: data?.message,
+        icon: "error",
+        confirmButtonText: "Okay",
+        confirmButtonColor: "#e25829",
+      });
+    }
+    return { data };
+  } catch (error) {
+    if (error.response) {
+      console.log(error?.response);
+      Swal.fire({
+        title: "Error!",
+        text: "",
+        icon: "error",
+        confirmButtonText: "Okay",
+        confirmButtonColor: "#e25829",
+      });
+    }
+    return { error };
+  }
+}
+export async function DashboardData(formData) {
+  try {
+    const { data } = await adminHttpService.get(
+      `${process.env.REACT_APP_APIENDPOINT}api/admin/getDashboardCount`
     );
     if (data?.error) {
       Swal.fire({

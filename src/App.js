@@ -9,6 +9,9 @@ import ViewOrder from "./Panel/adminComp/orders/ViewOrder";
 import Dining from "./Panel/adminComp/orders/Dining";
 import ViewDineOrder from "./Panel/adminComp/orders/ViewDineOrder";
 import AllTransaction from "./Panel/adminComp/Transaction/AllTransaction";
+import ForgotPass from "./Panel/adminComp/adminLogin/forgotPass";
+import OtpVerify from "./Panel/adminComp/adminLogin/OtpVerify";
+import ResetPassword from "./Panel/adminComp/adminLogin/ResetPassword";
 
 function App() {
   return (
@@ -17,6 +20,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/admin/login" element={<Login />} />
+          <Route path="/admin/login/forgot-pass" element={<ForgotPass />} />
+          <Route path="/admin/login/otp-verify/:mail" element={<OtpVerify />} />
+          <Route
+            path="/admin/login/reset-password/:mail"
+            element={<ResetPassword />}
+          />
           <Route path="/admin/language-select" element={<Language />} />
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route

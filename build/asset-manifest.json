@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.80970311.css",
-    "main.js": "/static/js/main.adaf989c.js",
+    "main.css": "/static/css/main.88917ea5.css",
+    "main.js": "/static/js/main.6dbc86d7.js",
     "static/media/siderbar.png": "/static/media/siderbar.3491e24083c1c0f2d915.png",
     "static/media/verification_bg.png": "/static/media/verification_bg.3491e24083c1c0f2d915.png",
     "static/media/fa-solid-900.ttf": "/static/media/fa-solid-900.d75e3fd1eb12e9bd6655.ttf",
@@ -41,11 +41,11 @@
     "static/media/restarunt-management.svg": "/static/media/restarunt-management.dad4f2935a1e92a31c356a42d33091ac.svg",
     "static/media/check-line.svg": "/static/media/check-line.e477cb8f4f2fadf96339.svg",
     "static/media/bar-chart-horizontal-line.svg": "/static/media/bar-chart-horizontal-line.b09f346aa5b27adb8e1ca5237017595b.svg",
-    "main.80970311.css.map": "/static/css/main.80970311.css.map",
-    "main.adaf989c.js.map": "/static/js/main.adaf989c.js.map"
+    "main.88917ea5.css.map": "/static/css/main.88917ea5.css.map",
+    "main.6dbc86d7.js.map": "/static/js/main.6dbc86d7.js.map"
   },
   "entrypoints": [
-    "static/css/main.80970311.css",
-    "static/js/main.adaf989c.js"
+    "static/css/main.88917ea5.css",
+    "static/js/main.6dbc86d7.js"
   ]
 }

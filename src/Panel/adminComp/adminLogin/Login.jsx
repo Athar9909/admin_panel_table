@@ -1,4 +1,3 @@
-import { Carousel } from "antd";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -14,17 +13,6 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  let AdminData = JSON.parse(localStorage.getItem("AdminSave"));
-
-  function togglePassword() {
-    var x = document.getElementById("password-Input");
-    if (x.type === "password") {
-      x.type = "text";
-    } else {
-      x.type = "password";
-    }
-  }
 
   const onSubmit = async (data) => {
     const res = await adminLogin({
@@ -108,7 +96,11 @@ const Login = () => {
                         )}
                       </div>
                       <div className="form-group col-12">
-                        <a className="for_got text-decoration-none">
+                        <a
+                          onClick={() => {
+                            navigate("/admin/login/forgot-pass");
+                          }}
+                          className="for_got text-decoration-none">
                           Forgot Password?
                         </a>
                       </div>

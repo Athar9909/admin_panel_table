@@ -1,22 +1,32 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar";
 import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import classNames from "classnames";
 import Profile from "../Profile";
-import { AllTakeawayOrders } from "../adminLogin/httpServicesAdmin/adminApis";
+import {
+  AllTakeawayOrders,
+  DashboardData,
+} from "../adminLogin/httpServicesAdmin/adminApis";
 
 const Dashboard = () => {
   const [slide, setSlide] = useState("Dash");
   const [sideBar, setSideBar] = useState();
-  const [files, setFiles] = useState([]);
   const [takeAway, setTakeAway] = useState([]);
   const navigate = useNavigate();
   const [values, setValues] = useState({ from: "", to: "" });
+  const [count, setCount] = useState();
 
   useEffect(() => {
     getAllOrders();
+    getDashData();
   }, []);
+
+  const getDashData = async (key) => {
+    const { data } = await DashboardData();
+    if (!data?.error) {
+      let values = data?.results;
+      setCount(values);
+    }
+  };
 
   const getAllOrders = async () => {
     const { data } = await AllTakeawayOrders({
@@ -50,85 +60,86 @@ const Dashboard = () => {
         <Profile />
         <div className="admin_panel_data height_adjust">
           <div className="row dashboard_part justify-content-center">
-            <div className="col-12 mb-4">
-              <div className="row">
-                <div className="col">
-                  <div className="row statics_box align-items-center">
-                    <div className="col">
-                      <div className="statics_data">
-                        <span>Delivery Orders</span>
-                        <h3 className="mb-0">0</h3>
-                      </div>
-                    </div>
-                    <div className="col-auto">
-                      <div className="statics_box_img">
+            <div className="col-12">
+              <div className="row ms-0 mb-3 justify-content-start">
+                <div className="col-4 d-flex align-items-stretch mb-4">
+                  <a className="row dashboard_box box_design w-100 justify-content-center text-decoration-none">
+                    <div className="col-12">
+                      <span className="dashboard_icon mx-auto mb-3">
                         <img src="../assets/img/delivery-order.svg" alt="" />
+                      </span>
+                    </div>
+                    <div className="col-12">
+                      <div className="dashboard_boxcontent text-center">
+                        <h2>Dining orders</h2>
+                        <span>{count?.diningOrders}</span>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 </div>
-                <div className="col">
-                  <div className="row statics_box align-items-center">
-                    <div className="col">
-                      <div className="statics_data">
-                        <span>Takeaway Orders</span>
-                        <h3 className="mb-0">0</h3>
+                <div className="col-4 d-flex align-items-stretch mb-4">
+                  <a className="row dashboard_box box_design w-100 justify-content-center  text-decoration-none">
+                    <div className="col-12">
+                      <span className="dashboard_icon mx-auto mb-3">
+                        <img src="../assets/img/takeaway-color.svg" alt="" />
+                      </span>
+                    </div>
+                    <div className="col-12">
+                      <div className="dashboard_boxcontent text-center">
+                        <h2>takeaway orders</h2>
+                        <span>{count?.takeAwayOrders}</span>
                       </div>
                     </div>
-                    <div className="col-auto">
-                      <div className="statics_box_img">
-                        <img src="../assets/img/delivery-order.svg" alt="" />
-                      </div>
-                    </div>
-                  </div>
+                  </a>
                 </div>
-                <div className="col">
-                  <div className="row statics_box align-items-center">
-                    <div className="col">
-                      <div className="statics_data">
-                        <span>Users</span>
-                        <h3 className="mb-0">0</h3>
+                <div className="col-4 d-flex align-items-stretch mb-4">
+                  <a className="row dashboard_box box_design w-100 justify-content-center  text-decoration-none">
+                    <div className="col-12">
+                      <span className="dashboard_icon mx-auto mb-3">
+                        <img src="../assets/img/user_color.svg" alt="" />
+                      </span>
+                    </div>
+                    <div className="col-12">
+                      <div className="dashboard_boxcontent text-center">
+                        <h2>users</h2>
+                        <span>{count?.totalRestaurants}</span>
                       </div>
                     </div>
-                    <div className="col-auto">
-                      <div className="statics_box_img">
-                        <img src="../assets/img/delivery-order.svg" alt="" />
-                      </div>
-                    </div>
-                  </div>
+                  </a>
                 </div>
-                <div className="col">
-                  <div className="row statics_box align-items-center">
-                    <div className="col">
-                      <div className="statics_data">
-                        <span>Restaurant</span>
-                        <h3 className="mb-0">0</h3>
+                <div className="col-6 d-flex align-items-stretch mb-4">
+                  <a className="row dashboard_box box_design w-100 justify-content-center  text-decoration-none">
+                    <div className="col-12">
+                      <span className="dashboard_icon mx-auto mb-3">
+                        <img src="../assets/img/hotel-color.svg" alt="" />
+                      </span>
+                    </div>
+                    <div className="col-12">
+                      <div className="dashboard_boxcontent text-center">
+                        <h2>restaurant</h2>
+                        <span>---</span>
                       </div>
                     </div>
-                    <div className="col-auto">
-                      <div className="statics_box_img">
-                        <img src="../assets/img/delivery-order.svg" alt="" />
-                      </div>
-                    </div>
-                  </div>
+                  </a>
                 </div>
-                <div className="col">
-                  <div className="row statics_box align-items-center">
-                    <div className="col">
-                      <div className="statics_data">
-                        <span>open tickets</span>
-                        <h3 className="mb-0">0</h3>
+                <div className="col-6 d-flex align-items-stretch mb-4">
+                  <a className="row dashboard_box box_design w-100 justify-content-center  text-decoration-none">
+                    <div className="col-12">
+                      <span className="dashboard_icon mx-auto mb-3">
+                        <img src="../assets/img/ticket.svg" alt="" />
+                      </span>
+                    </div>
+                    <div className="col-12">
+                      <div className="dashboard_boxcontent text-center">
+                        <h2>open tickets</h2>
+                        <span>---</span>
                       </div>
                     </div>
-                    <div className="col-auto">
-                      <div className="statics_box_img">
-                        <img src="../assets/img/delivery-order.svg" alt="" />
-                      </div>
-                    </div>
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>
+
             <div className="col-12 design_outter_comman shadow">
               <div className="row comman_header justify-content-between">
                 <div className="col-auto">

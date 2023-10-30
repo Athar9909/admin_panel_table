@@ -6,7 +6,7 @@ import classNames from "classnames";
 import Swal from "sweetalert2";
 import logo from "../../assets/img/logoNN.png";
 
-const ForgotPass = () => {
+const ResetPassword = () => {
   const navigate = useNavigate();
   const {
     register,
@@ -92,4 +92,4 @@ const ForgotPass = () => {
   );
 };
 
-export default ForgotPass;
+export default ResetPassword;

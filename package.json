@@ -21,9 +21,11 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.46.2",
     "react-hooks-useform": "^0.1.86",
+    "react-otp-input": "^3.1.0",
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.7.7",
+    "reactjs-otp-input": "^2.0.8",
     "styled-components": "^6.0.7",
     "sweetalert2": "^11.7.28",
     "web-vitals": "^2.1.4"
