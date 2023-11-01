@@ -12,6 +12,7 @@ import AllTransaction from "./Panel/adminComp/Transaction/AllTransaction";
 import ForgotPass from "./Panel/adminComp/adminLogin/forgotPass";
 import OtpVerify from "./Panel/adminComp/adminLogin/OtpVerify";
 import ResetPassword from "./Panel/adminComp/adminLogin/ResetPassword";
+import Notifications from "./Panel/adminComp/Notifications/Notifications";
 
 function App() {
   return (
@@ -52,6 +53,10 @@ function App() {
           <Route
             path="/admin/dashboard/transactions"
             element={<AllTransaction />}
+          />
+          <Route
+            path="/admin/dashboard/Notifications"
+            element={<Notifications />}
           />
         </Routes>
       </BrowserRouter>

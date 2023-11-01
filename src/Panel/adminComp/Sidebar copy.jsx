@@ -64,6 +64,18 @@ const Sidebar = ({ slide, getBarClick, getBar }) => {
                 Dashboard
               </a>
             </li>
+            {/* <li>
+              <a className="" href="users-management.html">
+                <img src="assets/img/user-management.svg" alt="" />
+                Users Management
+              </a>
+            </li> */}
+            {/* <li>
+              <a className="" href="recommended-restaurant-management.html">
+                <img src="assets/img/recomned-resto-management.svg" alt="" />
+                Recommended Restaurant Management
+              </a>
+            </li> */}
 
             <li>
               <a
@@ -117,18 +129,12 @@ const Sidebar = ({ slide, getBarClick, getBar }) => {
             <li>
               <a
                 className={
-                  slide === "NotiManage"
+                  slide === "transManage"
                     ? "active text-decoration-none"
                     : " text-decoration-none"
                 }
-                onClick={() => navigate("/admin/dashboard/Notifications")}>
-                {/* <img src={transac} alt="" /> */}
-                <i
-                  class={"fa fa-bell me-2"}
-                  style={{
-                    color: "#fff",
-                  }}
-                  aria-hidden="true"></i>
+                onClick={() => navigate("/admin/dashboard/transactions")}>
+                <img src={transac} alt="" />
                 Notification Management
               </a>
             </li>

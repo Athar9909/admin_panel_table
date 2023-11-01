@@ -5,6 +5,9 @@ import Profile from "../Profile";
 import {
   AllTakeawayOrders,
   DashboardData,
+  exportBranchData,
+  exportOrderData,
+  exportTransactionData,
 } from "../adminLogin/httpServicesAdmin/adminApis";
 
 const Dashboard = () => {
@@ -53,6 +56,27 @@ const Dashboard = () => {
     setSideBar(val);
   };
 
+  const ExportBranch = async () => {
+    const { data } = await exportBranchData();
+    if (!data.error) {
+      window.open(data?.results?.file);
+    }
+  };
+
+  const ExportOrder = async () => {
+    const { data } = await exportOrderData();
+    if (!data.error) {
+      window.open(data?.results?.file);
+    }
+  };
+
+  const ExportTransaction = async () => {
+    const { data } = await exportTransactionData();
+    if (!data.error) {
+      window.open(data?.results?.file);
+    }
+  };
+
   return (
     <div className="admin_main">
       <Sidebar slide={slide} getBarClick={getBarClick} />
@@ -63,7 +87,14 @@ const Dashboard = () => {
             <div className="col-12">
               <div className="row ms-0 mb-3 justify-content-start">
                 <div className="col-4 d-flex align-items-stretch mb-4">
-                  <a className="row dashboard_box box_design w-100 justify-content-center text-decoration-none">
+                  <a
+                    className="row dashboard_box box_design w-100 justify-content-center text-decoration-none"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Click to Export Report"
+                    onClick={() => {
+                      ExportOrder();
+                    }}>
                     <div className="col-12">
                       <span className="dashboard_icon mx-auto mb-3">
                         <img src="../assets/img/delivery-order.svg" alt="" />
@@ -78,7 +109,14 @@ const Dashboard = () => {
                   </a>
                 </div>
                 <div className="col-4 d-flex align-items-stretch mb-4">
-                  <a className="row dashboard_box box_design w-100 justify-content-center  text-decoration-none">
+                  <a
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Click to Export Report"
+                    onClick={() => {
+                      ExportOrder();
+                    }}
+                    className="row dashboard_box box_design w-100 justify-content-center  text-decoration-none">
                     <div className="col-12">
                       <span className="dashboard_icon mx-auto mb-3">
                         <img src="../assets/img/takeaway-color.svg" alt="" />
@@ -92,23 +130,16 @@ const Dashboard = () => {
                     </div>
                   </a>
                 </div>
+
                 <div className="col-4 d-flex align-items-stretch mb-4">
-                  <a className="row dashboard_box box_design w-100 justify-content-center  text-decoration-none">
-                    <div className="col-12">
-                      <span className="dashboard_icon mx-auto mb-3">
-                        <img src="../assets/img/user_color.svg" alt="" />
-                      </span>
-                    </div>
-                    <div className="col-12">
-                      <div className="dashboard_boxcontent text-center">
-                        <h2>users</h2>
-                        <span>{count?.totalRestaurants}</span>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="col-6 d-flex align-items-stretch mb-4">
-                  <a className="row dashboard_box box_design w-100 justify-content-center  text-decoration-none">
+                  <a
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Click to Export Report"
+                    onClick={() => {
+                      ExportBranch();
+                    }}
+                    className="row dashboard_box box_design w-100 justify-content-center  text-decoration-none">
                     <div className="col-12">
                       <span className="dashboard_icon mx-auto mb-3">
                         <img src="../assets/img/hotel-color.svg" alt="" />
@@ -117,22 +148,7 @@ const Dashboard = () => {
                     <div className="col-12">
                       <div className="dashboard_boxcontent text-center">
                         <h2>restaurant</h2>
-                        <span>---</span>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="col-6 d-flex align-items-stretch mb-4">
-                  <a className="row dashboard_box box_design w-100 justify-content-center  text-decoration-none">
-                    <div className="col-12">
-                      <span className="dashboard_icon mx-auto mb-3">
-                        <img src="../assets/img/ticket.svg" alt="" />
-                      </span>
-                    </div>
-                    <div className="col-12">
-                      <div className="dashboard_boxcontent text-center">
-                        <h2>open tickets</h2>
-                        <span>---</span>
+                        <span>{count?.totalRestaurants}</span>
                       </div>
                     </div>
                   </a>

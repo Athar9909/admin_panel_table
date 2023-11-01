@@ -5,29 +5,28 @@ import { useForm } from "react-hook-form";
 import classNames from "classnames";
 import Profile from "../Profile";
 import {
-  AllTakeawayOrders,
-  AllTransactions,
+  AllNotifications,
 } from "../adminLogin/httpServicesAdmin/adminApis";
 
-const AllTransaction = () => {
-  const [slide, setSlide] = useState("transManage");
+const Notifications = () => {
+  const [slide, setSlide] = useState("NotiManage");
   const [sideBar, setSideBar] = useState();
   const [List, setList] = useState([]);
   const navigate = useNavigate();
   const [values, setValues] = useState({ from: "", to: "" });
 
   useEffect(() => {
-    getAllTransaction();
+    getAllNotifications();
   }, []);
 
-  const getAllTransaction = async (key) => {
-    const { data } = await AllTransactions({
+  const getAllNotifications = async (key) => {
+    const { data } = await AllNotifications({
       from: values?.from,
       till: values?.to,
       //   type: "Take Away",
     });
     if (!data?.error) {
-      let values = data?.results;
+      let values = data?.results?.notifications;
       setList(values);
       setValues({ from: "", to: "" });
     }
@@ -59,12 +58,12 @@ const AllTransaction = () => {
                 <div className="col-12 design_outter_comman shadow">
                   <div className="row comman_header justify-content-between">
                     <div className="col">
-                      <h2>Transaction Management</h2>
+                      <h2>Notifications Management</h2>
                     </div>
                     <div className="col-3"></div>
                   </div>
                   <form
-                    className="form-design py-4 px-3 help-support-form row align-items-end justify-content-between"
+                    className="form-design py-4 px-3 help-support-form row align-items-end justify-content-between d-none"
                     action="">
                     <div className="form-group mb-0 col-5">
                       <label htmlFor="">From</label>
@@ -91,7 +90,7 @@ const AllTransaction = () => {
                     <div className="form-group mb-0 col-auto">
                       <a
                         onClick={() => {
-                          getAllTransaction();
+                          getAllNotifications();
                         }}
                         className="comman_btn text-decoration-none">
                         <span>Search</span>
@@ -106,23 +105,18 @@ const AllTransaction = () => {
                             <tr>
                               <th>Date</th>
                               <th>Restaurant Name</th>
-                              <th>Table Id</th>
-                              <th>Order Type</th>
-                              <th>Transaction Id</th>
-                              <th>Order Id</th>
-                              <th>Amount</th>
+                              <th>Title</th>
+                              <th>Description</th>
                             </tr>
                           </thead>
                           <tbody>
-                            {List?.transactions?.map((item, index) => (
+                            {List?.map((item, index) => (
                               <tr>
                                 <td>{item?.createdAt?.slice(0, 10)}</td>
                                 <td>{item?.restaurantId?.restaurant_name}</td>
-                                <td>{item?.orderId?.tableId?.name}</td>
-                                <td>{item?.type}</td>
-                                <td>{item?.transactionId}</td>
-                                <td>{item?.orderId?.orderId}</td>
-                                <td>{item?.orderId?.total}</td>
+                                
+                                <td>{item?.title_en}</td>
+                                <td>{item?.description_en}</td>
                                 {/* <td>
                                   <a
                                     className="comman_btn table_viewbtn"
@@ -137,14 +131,6 @@ const AllTransaction = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="row Total_amt mx-0 py-3">
-                    <div className="col-6">
-                      <strong>Total Amount: </strong>
-                    </div>
-                    <div className="col-6 text-end">
-                      <span>{List?.total} EGP</span>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -155,4 +141,4 @@ const AllTransaction = () => {
   );
 };
 
-export default AllTransaction;
+export default Notifications;

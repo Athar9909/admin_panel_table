@@ -500,6 +500,7 @@ div#google_translate_element {
   align-items: center;
   box-shadow: 0 10px 20px #0003;
   position: relative;
+  cursor: pointer;
 }
 .dashboard_icon {
   color: #FF7622;

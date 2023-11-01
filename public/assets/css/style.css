@@ -519,6 +519,7 @@ div#google_translate_element {
   font-weight: 500;
   font-size: 13px;
   text-transform: uppercase;
+  cursor: pointer;
 }
 .dashboard_boxcontent span {
   color: #fff;
