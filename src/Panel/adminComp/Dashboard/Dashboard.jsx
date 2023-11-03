@@ -63,15 +63,10 @@ const Dashboard = () => {
     }
   };
 
-  const ExportOrder = async () => {
-    const { data } = await exportOrderData();
-    if (!data.error) {
-      window.open(data?.results?.file);
-    }
-  };
-
-  const ExportTransaction = async () => {
-    const { data } = await exportTransactionData();
+  const ExportOrder = async (type) => {
+    const { data } = await exportOrderData({
+      type: type,
+    });
     if (!data.error) {
       window.open(data?.results?.file);
     }
@@ -93,7 +88,7 @@ const Dashboard = () => {
                     data-placement="top"
                     title="Click to Export Report"
                     onClick={() => {
-                      ExportOrder();
+                      ExportOrder("Dining");
                     }}>
                     <div className="col-12">
                       <span className="dashboard_icon mx-auto mb-3">
@@ -114,7 +109,7 @@ const Dashboard = () => {
                     data-placement="top"
                     title="Click to Export Report"
                     onClick={() => {
-                      ExportOrder();
+                      ExportOrder("Takeaway");
                     }}
                     className="row dashboard_box box_design w-100 justify-content-center  text-decoration-none">
                     <div className="col-12">
