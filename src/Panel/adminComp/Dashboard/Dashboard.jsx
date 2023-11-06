@@ -211,7 +211,17 @@ const Dashboard = () => {
                       <tbody>
                         {takeAway?.map((item, index) => (
                           <tr>
-                            <td>{item?.orderId}</td>
+                            <td>
+                              <a
+                                className="tag_class1"
+                                onClick={() =>
+                                  navigate(
+                                    `/admin/dashboard/orders/view/${item?._id}`
+                                  )
+                                }>
+                                {item?.orderId}
+                              </a>
+                            </td>
                             <td>
                               {item?.restaurantId?.restaurant_address?.slice(
                                 0,

@@ -4,9 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import classNames from "classnames";
 import Profile from "../Profile";
-import {
-  AllNotifications,
-} from "../adminLogin/httpServicesAdmin/adminApis";
+import { AllNotifications } from "../adminLogin/httpServicesAdmin/adminApis";
 
 const Notifications = () => {
   const [slide, setSlide] = useState("NotiManage");
@@ -104,6 +102,7 @@ const Notifications = () => {
                           <thead>
                             <tr>
                               <th>Date</th>
+                              <th>Order Id</th>
                               <th>Restaurant Name</th>
                               <th>Title</th>
                               <th>Description</th>
@@ -113,8 +112,19 @@ const Notifications = () => {
                             {List?.map((item, index) => (
                               <tr>
                                 <td>{item?.createdAt?.slice(0, 10)}</td>
+                                <td>
+                                  <a
+                                    className="tag_class1"
+                                    onClick={() =>
+                                      navigate(
+                                        `/admin/dashboard/orders/view/${item?.orderId?._id}`
+                                      )
+                                    }>
+                                    {item?.orderId?.orderId}
+                                  </a>
+                                </td>
                                 <td>{item?.restaurantId?.restaurant_name}</td>
-                                
+
                                 <td>{item?.title_en}</td>
                                 <td>{item?.description_en}</td>
                                 {/* <td>

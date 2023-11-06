@@ -121,7 +121,17 @@ const AllTransaction = () => {
                                 <td>{item?.orderId?.tableId?.name}</td>
                                 <td>{item?.type}</td>
                                 <td>{item?.transactionId}</td>
-                                <td>{item?.orderId?.orderId}</td>
+                                <td>
+                                  <a
+                                    className="tag_class1"
+                                    onClick={() =>
+                                      navigate(
+                                        `/admin/dashboard/orders/view/${item?.orderId?._id}`
+                                      )
+                                    }>
+                                    {item?.orderId?.orderId}
+                                  </a>
+                                </td>
                                 <td>{item?.orderId?.total}</td>
                                 {/* <td>
                                   <a
