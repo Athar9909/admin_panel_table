@@ -22,8 +22,6 @@ function App() {
   const Lang = useRecoilValue(LngState);
   const setLang = useSetRecoilState(LngState);
 
-  console.log(Lang);
-
   const [currentLangCode, setCurrentLangCode] = useState(
     Cookies.get("i18nextLng") || "en"
   );

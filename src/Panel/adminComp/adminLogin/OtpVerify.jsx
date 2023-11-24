@@ -4,6 +4,8 @@ import OtpInput from "react-otp-input";
 import { adminVerifyOtp } from "./httpServicesAdmin/adminApis";
 import Swal from "sweetalert2";
 import logo from "../../assets/img/logoNN.png";
+import i18next from "i18next";
+import Cookies from "js-cookie";
 
 const OtpVerify = () => {
   const navigate = useNavigate();
@@ -14,6 +16,12 @@ const OtpVerify = () => {
   useEffect(() => {
     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
   }, [counter]);
+
+  useEffect(() => {
+    i18next.changeLanguage("en");
+    Cookies.set("i18nextLng", "en");
+    document.body.dir = "ltr";
+  }, []);
 
   const VerifyOtp = async () => {
     const formData = {

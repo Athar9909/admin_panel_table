@@ -9,6 +9,7 @@ import { LngState } from "../../atom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import i18next from "i18next";
 import Cookies from "js-cookie";
+import { ChnageLanguage } from "./adminLogin/httpServicesAdmin/adminApis";
 const Profile = ({ slide, getBarClick, getBar }) => {
   const navigate = useNavigate();
   const [SlideState, setSlideState] = useState("");
@@ -23,6 +24,12 @@ const Profile = ({ slide, getBarClick, getBar }) => {
   useEffect(() => {
     setSlideState(slide);
   }, []);
+
+  const ChangeLang = async (lng) => {
+    await ChnageLanguage({
+      language: lng,
+    });
+  };
 
   return (
     <div>
@@ -43,6 +50,8 @@ const Profile = ({ slide, getBarClick, getBar }) => {
                   "i18nextLng",
                   currentLangCode === "en" ? "ar" : "en"
                 );
+                ChangeLang(currentLangCode === "en" ? "Arabic" : "English");
+
                 window.location.reload(false);
               }}>
               <img src={currentLangCode !== "en" ? flagUs : flag1} alt="" />

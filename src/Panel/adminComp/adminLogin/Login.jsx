@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { adminLogin } from "./httpServicesAdmin/adminApis";
 import classNames from "classnames";
 import Swal from "sweetalert2";
 import logo from "../../assets/img/logoNN.png";
+import i18next from "i18next";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -13,6 +15,12 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    i18next.changeLanguage("en");
+    Cookies.set("i18nextLng", "en");
+    document.body.dir = "ltr";
+  }, []);
 
   const onSubmit = async (data) => {
     const res = await adminLogin({
