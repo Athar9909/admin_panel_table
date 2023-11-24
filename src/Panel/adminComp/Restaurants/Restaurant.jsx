@@ -9,6 +9,7 @@ import {
   AllRestaurants,
 } from "../adminLogin/httpServicesAdmin/adminApis";
 import Swal from "sweetalert2";
+import { t } from "i18next";
 
 const Restaurant = () => {
   const [slide, setSlide] = useState("RestoManage");
@@ -43,9 +44,13 @@ const Restaurant = () => {
   const onSubmit = async (data) => {
     let formData = new FormData();
     formData.append("restaurant_name", data?.name);
+    formData.append("restaurant_name_ar", data?.name_ar);
     formData.append("restaurant_address", data?.address);
+    formData.append("restaurant_address_ar", data?.address_ar);
     formData.append("restaurant_description", data?.desc);
+    formData.append("restaurant_description_ar", data?.desc_ar);
     formData.append("owner_name", data?.owner);
+    formData.append("owner_name_ar", data?.owner_ar);
     formData.append("country_code", data?.code);
     formData.append("opening_time", data?.opTime);
     formData.append("closing_time", data?.closeTime);
@@ -82,17 +87,11 @@ const Restaurant = () => {
         <div className="admin_panel_data height_adjust">
           <div className="row dashboard_part justify-content-center">
             <div className="col-12 mb-4 d-flex align-items-center justify-content-end">
-              {/* <button className="export_impo shadow me-3">
-                <img src="assets/img/import.svg" alt="" /> Import
-              </button>
-              <button className="export_impo shadow me-3">
-                <img src="assets/img/share-forward-line.svg" alt="" /> Export
-              </button> */}
               <button
                 data-bs-toggle="modal"
                 data-bs-target="#AddResto"
                 className="comman_btn">
-                <span>Add New Restaurant</span>
+                <span>{t("ANR")}</span>
               </button>
             </div>
             <div className="col-12">
@@ -100,7 +99,7 @@ const Restaurant = () => {
                 <div className="col-12 design_outter_comman shadow">
                   <div className="row comman_header justify-content-between">
                     <div className="col-auto">
-                      <h2>Restaurants Management</h2>
+                      <h2>{t("RestaurantM")}</h2>
                     </div>
                   </div>
                   <form
@@ -118,11 +117,11 @@ const Restaurant = () => {
                       </select>
                     </div> */}
                     <div className="form-group mb-0 col">
-                      <label htmlFor="">Search</label>
+                      <label htmlFor="">{t("Search")}</label>
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Search by restaurant name"
+                        placeholder={t("SRN")}
                         onChange={(e) => {
                           getAllRestaurants(e.target.value);
                         }}
@@ -130,7 +129,7 @@ const Restaurant = () => {
                     </div>
                     <div className="form-group mb-0 col-auto">
                       <a className="comman_btn text-decoration-none">
-                        <span>Search</span>
+                        <span>{t("Search")}</span>
                       </a>
                     </div>
                   </form>
@@ -153,11 +152,11 @@ const Restaurant = () => {
                                   </div>
                                 </form>
                               </th>
-                              <th>Name</th>
-                              <th>Email</th>
-                              <th>Mobile Number</th>
-                              <th>Created At</th>
-                              <th>Action</th>
+                              <th>{t("Name")}</th>
+                              <th>{t("Search")}</th>
+                              <th>{t("No_")}</th>
+                              <th>{t("Date")}</th>
+                              <th>{t("Action")}</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -188,7 +187,7 @@ const Restaurant = () => {
                                         `/admin/dashboard/restaurants-view/${item?._id}`
                                       )
                                     }>
-                                    <span>View</span>
+                                    <span>{t("View")}</span>
                                   </a>
                                   {/* <a
                                     className="comman_btn bg-danger table_viewbtn ms-1"
@@ -217,11 +216,11 @@ const Restaurant = () => {
         tabIndex={-1}
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true">
-        <div className="modal-dialog modal-dialog-centered">
+        <div className="modal-dialog modal-dialog-centered modal-lg">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="staticBackdropLabel">
-                Add Restaurant
+                {t("ANR")}
               </h5>
               <button
                 type="button"
@@ -238,7 +237,7 @@ const Restaurant = () => {
                 action=""
                 onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group col-6">
-                  <label htmlFor="upload_video1"> Upload Logo</label>
+                  <label htmlFor="upload_video1">{t("UpLogo")}</label>
                   <input
                     type="file"
                     className="form-control"
@@ -249,7 +248,7 @@ const Restaurant = () => {
                   />
                 </div>
                 <div className="form-group col-6 ">
-                  <label htmlFor="upload_video2"> Upload Cover</label>
+                  <label htmlFor="upload_video2">{t("UpCover")}</label>
                   <input
                     type="file"
                     className="form-control"
@@ -278,26 +277,28 @@ const Restaurant = () => {
                   )}
                 </div>
 
-                <div className="form-group col-8">
-                  <label htmlFor="">Restaurant Address</label>
+                <div className="form-group col-4">
+                  <label htmlFor="">{t("RestN")} (ar)</label>
                   <input
-                    {...register("address", { required: true })}
+                    {...register("name_ar", { required: true })}
                     type="text"
                     className={classNames("form-control", {
-                      "is-invalid": errors.address,
+                      "is-invalid": errors.name_ar,
                     })}
-                    name="address"
-                    placeholder="Enter Restaurant Address"
+                    name="name_ar"
+                    lang="ar"
+                    dir="rtl"
+                    placeholder="اطبع شيئا"
                   />
-                  {errors.address && (
+                  {errors.name_ar && (
                     <small className="errorText  ">
-                      {errors.address?.message}
+                      {errors.name_ar?.message}
                     </small>
                   )}
                 </div>
 
                 <div className="form-group col-4">
-                  <label htmlFor="">Country Code</label>
+                  <label htmlFor="">{t("CountryCode")}</label>
 
                   <select
                     {...register("code", { required: true })}
@@ -305,7 +306,6 @@ const Restaurant = () => {
                       "is-invalid": errors.code,
                     })}
                     name="code"
-                   
                     placeholder="+966">
                     <option value="+93">Afghanistan (+93)</option>
                     <option value="+355">Albania (+355)</option>
@@ -558,8 +558,46 @@ const Restaurant = () => {
                   )}
                 </div>
 
-                <div className="form-group col-8">
-                  <label htmlFor="">Restaurant Description</label>
+                <div className="form-group col-6">
+                  <label htmlFor="">Restaurant Address (en)</label>
+                  <input
+                    {...register("address", { required: true })}
+                    type="text"
+                    className={classNames("form-control", {
+                      "is-invalid": errors.address,
+                    })}
+                    name="address"
+                    placeholder="Enter Restaurant Address"
+                  />
+                  {errors.address && (
+                    <small className="errorText  ">
+                      {errors.address?.message}
+                    </small>
+                  )}
+                </div>
+
+                <div className="form-group col-6">
+                  <label htmlFor="">{t("RestAddress")} (ar)</label>
+                  <input
+                    {...register("address_ar", { required: true })}
+                    type="text"
+                    lang="ar"
+                    dir="rtl"
+                    className={classNames("form-control", {
+                      "is-invalid": errors.address_ar,
+                    })}
+                    name="address_ar"
+                    placeholder="اطبع شيئا"
+                  />
+                  {errors.address_ar && (
+                    <small className="errorText  ">
+                      {errors.address_ar?.message}
+                    </small>
+                  )}
+                </div>
+
+                <div className="form-group col-6">
+                  <label htmlFor="">Restaurant Description (en)</label>
                   <input
                     {...register("desc", { required: true })}
                     type="text"
@@ -575,9 +613,28 @@ const Restaurant = () => {
                     </small>
                   )}
                 </div>
+                <div className="form-group col-6">
+                  <label htmlFor="">{t("RestDesc")} (ar)</label>
+                  <input
+                    {...register("desc_ar", { required: true })}
+                    type="text"
+                    className={classNames("form-control", {
+                      "is-invalid": errors.desc_ar,
+                    })}
+                    name="desc_ar"
+                    lang="ar"
+                    dir="rtl"
+                    placeholder="اطبع شيئا"
+                  />
+                  {errors.desc_ar && (
+                    <small className="errorText  ">
+                      {errors.desc_ar?.message}
+                    </small>
+                  )}
+                </div>
 
                 <div className="form-group col-4">
-                  <label htmlFor="">Owner Name</label>
+                  <label htmlFor="">Owner Name (en)</label>
                   <input
                     {...register("owner", { required: true })}
                     type="text"
@@ -585,7 +642,7 @@ const Restaurant = () => {
                       "is-invalid": errors.owner,
                     })}
                     name="owner"
-                    placeholder="Enter Owner Name"
+                    placeholder="أدخل اسم المالك"
                   />
                   {errors.owner && (
                     <small className="errorText  ">
@@ -595,7 +652,27 @@ const Restaurant = () => {
                 </div>
 
                 <div className="form-group col-4">
-                  <label htmlFor="">Email</label>
+                  <label htmlFor="">{t("RestOwn")} (ar)</label>
+                  <input
+                    {...register("owner_ar", { required: true })}
+                    type="text"
+                    className={classNames("form-control", {
+                      "is-invalid": errors.owner_ar,
+                    })}
+                    name="owner_ar"
+                    lang="ar"
+                    dir="rtl"
+                    placeholder="اطبع شيئا"
+                  />
+                  {errors.owner_ar && (
+                    <small className="errorText  ">
+                      {errors.owner_ar?.message}
+                    </small>
+                  )}
+                </div>
+
+                <div className="form-group col-4">
+                  <label htmlFor="">{t("Email")}</label>
                   <input
                     {...register("email", { required: true })}
                     type="text"
@@ -603,7 +680,7 @@ const Restaurant = () => {
                       "is-invalid": errors.email,
                     })}
                     name="email"
-                    placeholder="Enter Email Address"
+                    placeholder="أدخل عنوان البريد الالكتروني"
                   />
                   {errors.email && (
                     <small className="errorText  ">
@@ -612,8 +689,8 @@ const Restaurant = () => {
                   )}
                 </div>
 
-                <div className="form-group col-4">
-                  <label htmlFor="">Phone Number</label>
+                <div className="form-group col-3">
+                  <label htmlFor="">{t("No_")} </label>
                   <input
                     {...register("number", { required: true })}
                     type="number"
@@ -621,7 +698,7 @@ const Restaurant = () => {
                       "is-invalid": errors.number,
                     })}
                     name="number"
-                    placeholder="Enter contact number"
+                    placeholder="أدخل رقم الهاتف"
                   />
                   {errors.number && (
                     <small className="errorText  ">
@@ -629,8 +706,8 @@ const Restaurant = () => {
                     </small>
                   )}
                 </div>
-                <div className="form-group col-4">
-                  <label htmlFor="">Password</label>
+                <div className="form-group col-3">
+                  <label htmlFor="">{t("Password")}</label>
                   <input
                     {...register("password", { required: true })}
                     type="password"
@@ -646,8 +723,8 @@ const Restaurant = () => {
                     </small>
                   )}
                 </div>
-                <div className="form-group col-4">
-                  <label htmlFor="">Opening Time</label>
+                <div className="form-group col-3">
+                  <label htmlFor="">{t("CloseT")}</label>
                   <input
                     {...register("opTime", { required: true })}
                     type="text"
@@ -664,8 +741,8 @@ const Restaurant = () => {
                   )}
                 </div>
 
-                <div className="form-group col-4">
-                  <label htmlFor="">Closing Time</label>
+                <div className="form-group col-3">
+                  <label htmlFor="">{t("OpenT")}</label>
                   <input
                     {...register("closeTime", { required: true })}
                     type="text"
@@ -684,7 +761,7 @@ const Restaurant = () => {
 
                 <div className="form-group mb-0 col-12 text-center">
                   <button className="comman_btn d-inline-flex" type="submit">
-                    <span>Save Details</span>
+                    <span>{t("Save")}</span>
                   </button>
                   <button
                     className="comman_btn d-inline-flex d-none"

@@ -819,7 +819,7 @@ div#google_translate_element {
   color: #fff;
 }
 .comman_modal .modal-dialog {
-  max-width: 740px;
+  max-width: 950px;
 }
 .comman_modal .modal-header .btn-close {
   opacity: 1;
@@ -1266,4 +1266,48 @@ div#google_translate_element {
 .tag_class1 {
   cursor: pointer;
   text-decoration: none;
+}
+
+.arabicRtl .change_language {
+  margin-left: 20px;
+  text-decoration: none;
+}
+.arabicRtl .change_language img {
+  margin-left: 10px;
+}
+.arabicRtl .siderbar_section {
+  position: fixed;
+  left: 80%;
+  top: 0;
+  z-index: 9;
+  width: 22%;
+  height: 100vh;
+  background-image: url(../img/siderbar.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-left: 10px solid #ff7622;
+  transition: 0.1s all;
+}
+.arabicRtl .admin_main_inner {
+  position: fixed;
+  left: 0px !important;
+  width: 80%;
+}
+.arabicRtl .sidebar_menus ul li a img{
+  margin-left: 8px;
+}
+.arabicRtl .sidebar_menus ul li a i{
+  margin-left: 8px;
+}
+.arabicRtl .sidebar_menus ul li a{
+  position: relative;
+  left: 15px;
+  width: 150%;
+}
+.arabicRtl .comman_modal .modal-header .btn-close {
+  opacity: 1;
+  filter: invert(1);
+  position: relative;
+  right: 85%;
 }

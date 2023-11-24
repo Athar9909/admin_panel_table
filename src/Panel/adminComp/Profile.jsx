@@ -3,39 +3,26 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import sideBtn from "../assets/img/bar-chart-horizontal-line.svg";
 import flag1 from "../assets/img/saudi_flag1.png";
+import flagUs from "../assets/img/united-kingdom.png";
 import profileImg from "../assets/img/profile_img1.png";
+import { LngState } from "../../atom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import i18next from "i18next";
+import Cookies from "js-cookie";
 const Profile = ({ slide, getBarClick, getBar }) => {
   const navigate = useNavigate();
   const [SlideState, setSlideState] = useState("");
   const width = window.innerWidth;
   const [sideBar, setSideBar] = useState(width < 768 ? false : true);
+  const Lang = useRecoilValue(LngState);
+  const setLang = useSetRecoilState(LngState);
 
+  const [currentLangCode, setCurrentLangCode] = useState(
+    Cookies.get("i18next") || "en"
+  );
   useEffect(() => {
     setSlideState(slide);
   }, []);
-
-  let token = localStorage.getItem("token-admin");
-  // let AdminData = JSON.parse(localStorage.getItem("token-admin-data"));
-
-  // console.log(AdminData);
-  // if (token === null) {
-  //   Swal.fire({
-  //     title: "PLease Login to Continue!",
-  //     text: "Login Expired!",
-  //     icon: "warning",
-  //     confirmButtonText: "Login",
-  //     confirmButtonColor: "#e25829",
-  //   }).then((res) => {
-  //     navigate("/admin/Login");
-  //   });
-  // }
-  // console.log(width);
-
-  const Logout = () => {
-    localStorage.removeItem("token-admin");
-    navigate("/admin/Login");
-    window.location.reload();
-  };
 
   return (
     <div>
@@ -47,8 +34,19 @@ const Profile = ({ slide, getBarClick, getBar }) => {
             </a>
           </div>
           <div className="col-auto d-flex align-items-center">
-            <a className="change_language" href="javascript:;">
-              <img src={flag1} alt="" /> عربى
+            <a
+              className="change_language"
+              onClick={() => {
+                i18next.changeLanguage(currentLangCode === "en" ? "ar" : "en");
+                setLang(currentLangCode === "en" ? "ar" : "en");
+                Cookies.set(
+                  "i18nextLng",
+                  currentLangCode === "en" ? "ar" : "en"
+                );
+                window.location.reload(false);
+              }}>
+              <img src={currentLangCode !== "en" ? flagUs : flag1} alt="" />
+              {currentLangCode !== "en" ? "English" : " عربى "}
             </a>
             <div className="dropdown Profile_dropdown">
               <button

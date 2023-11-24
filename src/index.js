@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import "../src/Panel/assets/css/style.css"
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "../src/Panel/assets/css/style.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
 import "../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css";
@@ -10,10 +10,14 @@ import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
 import "../node_modules/@fortawesome/fontawesome-free/css/brands.min.css";
 import "../node_modules/@fortawesome/fontawesome-svg-core/styles.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import "../src/i18n";
+import { RecoilRoot } from "recoil";
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <RecoilRoot>
+      <App />
+    </RecoilRoot>
   </React.StrictMode>
 );
 

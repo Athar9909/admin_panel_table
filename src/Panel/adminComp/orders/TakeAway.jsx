@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import classNames from "classnames";
 import Profile from "../Profile";
 import { AllTakeawayOrders } from "../adminLogin/httpServicesAdmin/adminApis";
+import { t } from "i18next";
 
 const Takeaway = () => {
   const [slide, setSlide] = useState("takeManage");
@@ -56,7 +57,7 @@ const Takeaway = () => {
                 <div className="col-12 design_outter_comman shadow">
                   <div className="row comman_header justify-content-between">
                     <div className="col">
-                      <h2>Takeaway Order Management</h2>
+                      <h2>{t("TakeawayM")}</h2>
                     </div>
                     <div className="col-3"></div>
                   </div>
@@ -64,7 +65,7 @@ const Takeaway = () => {
                     className="form-design py-4 px-3 help-support-form row align-items-end justify-content-between"
                     action="">
                     <div className="form-group mb-0 col-5">
-                      <label htmlFor="">From</label>
+                      <label htmlFor="">{t("from")}</label>
                       <input
                         type="date"
                         className="form-control"
@@ -75,7 +76,7 @@ const Takeaway = () => {
                       />
                     </div>
                     <div className="form-group mb-0 col-5">
-                      <label htmlFor="">To</label>
+                      <label htmlFor="">{t("to")}</label>
                       <input
                         type="date"
                         className="form-control"
@@ -91,7 +92,7 @@ const Takeaway = () => {
                           getAllOrders();
                         }}
                         className="comman_btn text-decoration-none">
-                        <span>Search</span>
+                        <span>{t("Search")}</span>
                       </a>
                     </div>
                   </form>
@@ -101,14 +102,14 @@ const Takeaway = () => {
                         <table className="table mb-0">
                           <thead>
                             <tr>
-                              <th>Order Id</th>
-                              <th>Restaurant Address</th>
+                              <th>{t("OrderId")}</th>
+                              <th>{t("RestAddress")}</th>
                               {/* <th>Customer Name</th> */}
-                              <th>Mobile Number</th>
+                              <th>{t("No_")}</th>
                               {/* <th>Order Details</th> */}
-                              <th>Pickup Time</th>
+                              <th>{t("Time")}</th>
                               {/* <th>Status</th> */}
-                              <th>Action</th>
+                              <th>{t("Action")}</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -133,7 +134,7 @@ const Takeaway = () => {
                                         `/admin/dashboard/orders/view/${item?._id}`
                                       )
                                     }>
-                                    <span>View</span>
+                                    <span>{t("View")}</span>
                                   </a>
                                 </td>
                               </tr>

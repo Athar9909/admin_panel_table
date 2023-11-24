@@ -8,37 +8,32 @@ import take from "../assets/img/takeaway.svg";
 import Dine from "../assets/img/dining.svg";
 import transac from "../assets/img/transaction.svg";
 import log from "../assets/img/logout-circle-r-line.svg";
+import i18next, { t } from "i18next";
+import Cookies from "js-cookie";
+import { LngState } from "../../atom";
+import { useSetRecoilState } from "recoil";
 const Sidebar = ({ slide, getBarClick, getBar }) => {
   const navigate = useNavigate();
   const [SlideState, setSlideState] = useState("");
   const width = window.innerWidth;
   const [sideBar, setSideBar] = useState(width < 768 ? false : true);
+  const setLang = useSetRecoilState(LngState);
 
   useEffect(() => {
     setSlideState(slide);
   }, []);
 
   let token = localStorage.getItem("token-admin");
-  // let AdminData = JSON.parse(localStorage.getItem("token-admin-data"));
 
-  // console.log(AdminData);
   console.log(slide, "kjkj");
-  // if (token === null) {
-  //   Swal.fire({
-  //     title: "PLease Login to Continue!",
-  //     text: "Login Expired!",
-  //     icon: "warning",
-  //     confirmButtonText: "Login",
-  //     confirmButtonColor: "#e25829",
-  //   }).then((res) => {
-  //     navigate("/admin/Login");
-  //   });
-  // }
-  // console.log(width);
 
   const Logout = () => {
+    i18next.changeLanguage("en");
+    setLang("en");
+    Cookies.set("i18nextLng", "en");
     localStorage.removeItem("token-admin");
     navigate("/admin/login");
+
     window.location.reload();
   };
 
@@ -61,7 +56,7 @@ const Sidebar = ({ slide, getBarClick, getBar }) => {
                 }
                 onClick={() => navigate("/admin/dashboard")}>
                 <img src={dash} alt="" />
-                Dashboard
+                {t("Dashboard")}
               </a>
             </li>
 
@@ -74,7 +69,7 @@ const Sidebar = ({ slide, getBarClick, getBar }) => {
                 }
                 onClick={() => navigate("/admin/dashboard/restaurants-manage")}>
                 <img src={resto} alt="" />
-                Restaurants Management
+                {t("RestaurantM")}
               </a>
             </li>
 
@@ -87,7 +82,7 @@ const Sidebar = ({ slide, getBarClick, getBar }) => {
                 }
                 onClick={() => navigate("/admin/dashboard/orders/takeaway")}>
                 <img src={take} alt="" />
-                Takeaway Order Management
+                {t("TakeawayM")}
               </a>
             </li>
             <li>
@@ -99,7 +94,7 @@ const Sidebar = ({ slide, getBarClick, getBar }) => {
                 }
                 onClick={() => navigate("/admin/dashboard/orders/Dining")}>
                 <img src={Dine} alt="" />
-                Dining Booking Management
+                {t("DiningM")}
               </a>
             </li>
             <li>
@@ -111,7 +106,7 @@ const Sidebar = ({ slide, getBarClick, getBar }) => {
                 }
                 onClick={() => navigate("/admin/dashboard/transactions")}>
                 <img src={transac} alt="" />
-                Transaction Management
+                {t("TransM")}
               </a>
             </li>
             <li>
@@ -129,7 +124,7 @@ const Sidebar = ({ slide, getBarClick, getBar }) => {
                     color: "#fff",
                   }}
                   aria-hidden="true"></i>
-                Notification Management
+                {t("NotiM")}
               </a>
             </li>
             {/* <li>
@@ -178,7 +173,7 @@ const Sidebar = ({ slide, getBarClick, getBar }) => {
             <li>
               <a className=" text-decoration-none" onClick={() => Logout()}>
                 <img src={log} alt="" />
-                Logout
+                {t("Logout")}
               </a>
             </li>
           </ul>

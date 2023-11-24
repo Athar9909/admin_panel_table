@@ -10,6 +10,7 @@ import {
 } from "../adminLogin/httpServicesAdmin/adminApis";
 import Swal from "sweetalert2";
 import profilePic from "../../assets/img/profile_img1.png";
+import { t } from "i18next";
 const ViewRestaurant = () => {
   const [slide, setSlide] = useState("RestoManage");
   const [sideBar, setSideBar] = useState();
@@ -52,7 +53,7 @@ const ViewRestaurant = () => {
       });
     }
   };
-  console.log(files);
+
   const RestaurantsDetails = async (key) => {
     const { data } = await getRestaurantDetails(id);
     if (!data?.error) {
@@ -63,6 +64,10 @@ const ViewRestaurant = () => {
         address: values?.restaurantId?.restaurant_address,
         owner: values?.restaurantId?.owner_name,
         desc: values?.description,
+        name_ar: values?.restaurantId?.restaurant_name_ar,
+        address_ar: values?.restaurantId?.restaurant_address_ar,
+        owner_ar: values?.restaurantId?.owner_name_ar,
+        desc_ar: values?.description_ar,
         code: values?.country_code,
         opTime: values?.restaurantId?.opening_time,
         closeTime: values?.restaurantId?.closing_time,
@@ -78,8 +83,12 @@ const ViewRestaurant = () => {
     formData.append("restaurant_name", data?.name);
     formData.append("restaurant_address", data?.address);
     formData.append("restaurant_description", data?.desc);
+    formData.append("restaurant_name_ar", data?.name_ar);
+    formData.append("restaurant_address_ar", data?.address_ar);
+    formData.append("restaurant_description_ar", data?.desc_ar);
     formData.append("country_code", data?.code);
     formData.append("owner_name", data?.owner);
+    formData.append("owner_name_ar", data?.owner_ar);
     formData.append("opening_time", data?.opTime);
     formData.append("closiing_time", data?.closeTime);
     formData.append("email", data?.email);
@@ -124,7 +133,7 @@ const ViewRestaurant = () => {
                 <div className="col-12 design_outter_comman shadow mb-4 toggle_set">
                   <div className="row comman_header justify-content-between">
                     <div className="col-auto">
-                      <h2>Restaurants Management Details </h2>
+                      <h2>{t("RMD")}</h2>
                       <div className="col-12">
                         {/* <div className="check_toggle">
                           <input
@@ -145,7 +154,7 @@ const ViewRestaurant = () => {
                       action=""
                       onSubmit={handleSubmit(onSubmit)}>
                       <div className="form-group col-6">
-                        <label>Logo</label>
+                        <label>{t("LogoImg")}</label>
 
                         <div class="account_profile position-relative d-inline-flex">
                           <div class="circle">
@@ -178,7 +187,7 @@ const ViewRestaurant = () => {
                         </div>
                       </div>
                       <div className="form-group col-6 ">
-                        <label>Cover Image</label>
+                        <label>{t("CoverImg")}</label>
                         <div class="account_profile position-relative d-inline-flex">
                           <div class="circle">
                             <img
@@ -211,9 +220,9 @@ const ViewRestaurant = () => {
                       </div>
 
                       <div className="form-group col-4">
-                        <label htmlFor="">Restaurant Name</label>
+                        <label htmlFor="">Restaurant Name (en)</label>
                         <input
-                          {...register("name", { required: false })}
+                          {...register("name", { required: true })}
                           type="text"
                           className={classNames("form-control", {
                             "is-invalid": errors.name,
@@ -228,26 +237,29 @@ const ViewRestaurant = () => {
                         )}
                       </div>
 
-                      <div className="form-group col-8">
-                        <label htmlFor="">Restaurant Address</label>
+                      <div className="form-group col-4">
+                        <label htmlFor="">{t("RestN")} (ar)</label>
                         <input
-                          {...register("address", { required: false })}
+                          {...register("name_ar", { required: true })}
                           type="text"
                           className={classNames("form-control", {
-                            "is-invalid": errors.address,
+                            "is-invalid": errors.name_ar,
                           })}
-                          name="address"
-                          placeholder="Enter Restaurant Address"
+                          name="name_ar"
+                          lang="ar"
+                          dir="rtl"
+                          placeholder="اطبع شيئا"
                         />
-                        {errors.address && (
+                        {errors.name_ar && (
                           <small className="errorText  ">
-                            {errors.address?.message}
+                            {errors.name_ar?.message}
                           </small>
                         )}
                       </div>
 
                       <div className="form-group col-4">
-                        <label htmlFor="">Country Code</label>
+                        <label htmlFor="">{t("CountryCode")}</label>
+
                         <select
                           {...register("code", { required: true })}
                           className={classNames(" form-control form-select", {
@@ -255,7 +267,6 @@ const ViewRestaurant = () => {
                           })}
                           name="code"
                           placeholder="+966">
-                          <option value="+93"></option>
                           <option value="+93">Afghanistan (+93)</option>
                           <option value="+355">Albania (+355)</option>
                           <option value="+213">Algeria (+213)</option>
@@ -477,7 +488,9 @@ const ViewRestaurant = () => {
                           <option value="+239">
                             Sao Tome and Principe (+239)
                           </option>
-                          <option value="+966">Saudi Arabia (+966)</option>
+                          <option value="+966" selected>
+                            Saudi Arabia (+966)
+                          </option>
                           <option value="+221">Senegal (+221)</option>
                           <option value="+381">Serbia (+381)</option>
                           <option value="+248">Seychelles (+248)</option>
@@ -519,10 +532,48 @@ const ViewRestaurant = () => {
                         )}
                       </div>
 
-                      <div className="form-group col-8">
-                        <label htmlFor="">Restaurant Description</label>
+                      <div className="form-group col-6">
+                        <label htmlFor="">Restaurant Address (en)</label>
                         <input
-                          {...register("desc", { required: false })}
+                          {...register("address", { required: true })}
+                          type="text"
+                          className={classNames("form-control", {
+                            "is-invalid": errors.address,
+                          })}
+                          name="address"
+                          placeholder="Enter Restaurant Address"
+                        />
+                        {errors.address && (
+                          <small className="errorText  ">
+                            {errors.address?.message}
+                          </small>
+                        )}
+                      </div>
+
+                      <div className="form-group col-6">
+                        <label htmlFor="">{t("RestAddress")} (ar)</label>
+                        <input
+                          {...register("address_ar", { required: true })}
+                          type="text"
+                          lang="ar"
+                          dir="rtl"
+                          className={classNames("form-control", {
+                            "is-invalid": errors.address_ar,
+                          })}
+                          name="address_ar"
+                          placeholder="اطبع شيئا"
+                        />
+                        {errors.address_ar && (
+                          <small className="errorText  ">
+                            {errors.address_ar?.message}
+                          </small>
+                        )}
+                      </div>
+
+                      <div className="form-group col-6">
+                        <label htmlFor="">Restaurant Description (en)</label>
+                        <input
+                          {...register("desc", { required: true })}
                           type="text"
                           className={classNames("form-control", {
                             "is-invalid": errors.desc,
@@ -536,11 +587,30 @@ const ViewRestaurant = () => {
                           </small>
                         )}
                       </div>
+                      <div className="form-group col-6">
+                        <label htmlFor="">{t("RestDesc")} (ar)</label>
+                        <input
+                          {...register("desc_ar", { required: true })}
+                          type="text"
+                          className={classNames("form-control", {
+                            "is-invalid": errors.desc_ar,
+                          })}
+                          name="desc_ar"
+                          lang="ar"
+                          dir="rtl"
+                          placeholder="اطبع شيئا"
+                        />
+                        {errors.desc_ar && (
+                          <small className="errorText  ">
+                            {errors.desc_ar?.message}
+                          </small>
+                        )}
+                      </div>
 
                       <div className="form-group col-4">
-                        <label htmlFor="">Owner Name</label>
+                        <label htmlFor="">Owner Name (en)</label>
                         <input
-                          {...register("owner", { required: false })}
+                          {...register("owner", { required: true })}
                           type="text"
                           className={classNames("form-control", {
                             "is-invalid": errors.owner,
@@ -556,7 +626,27 @@ const ViewRestaurant = () => {
                       </div>
 
                       <div className="form-group col-4">
-                        <label htmlFor="">Email</label>
+                        <label htmlFor="">{t("RestOwn")} (ar)</label>
+                        <input
+                          {...register("owner_ar", { required: true })}
+                          type="text"
+                          className={classNames("form-control", {
+                            "is-invalid": errors.owner_ar,
+                          })}
+                          name="owner_ar"
+                          lang="ar"
+                          dir="rtl"
+                          placeholder="اطبع شيئا"
+                        />
+                        {errors.owner_ar && (
+                          <small className="errorText  ">
+                            {errors.owner_ar?.message}
+                          </small>
+                        )}
+                      </div>
+
+                      <div className="form-group col-4">
+                        <label htmlFor="">{t("Email")}</label>
                         <input
                           {...register("email", { required: true })}
                           type="text"
@@ -573,8 +663,8 @@ const ViewRestaurant = () => {
                         )}
                       </div>
 
-                      <div className="form-group col-4">
-                        <label htmlFor="">Phone Number</label>
+                      <div className="form-group col-3">
+                        <label htmlFor="">{t("No_")}</label>
                         <input
                           {...register("number", { required: true })}
                           type="number"
@@ -590,8 +680,8 @@ const ViewRestaurant = () => {
                           </small>
                         )}
                       </div>
-                      <div className="form-group col-4">
-                        <label htmlFor="">Password</label>
+                      <div className="form-group col-3">
+                        <label htmlFor="">{t("Password")}</label>
                         <input
                           {...register("password", { required: false })}
                           type="password"
@@ -607,8 +697,9 @@ const ViewRestaurant = () => {
                           </small>
                         )}
                       </div>
-                      <div className="form-group col-4">
-                        <label htmlFor="">Opening Time</label>
+
+                      <div className="form-group col-3">
+                        <label htmlFor="">{t("OpenT")}</label>
                         <input
                           {...register("opTime", { required: false })}
                           type="text"
@@ -624,9 +715,8 @@ const ViewRestaurant = () => {
                           </small>
                         )}
                       </div>
-
-                      <div className="form-group col-4">
-                        <label htmlFor="">Closing Time</label>
+                      <div className="form-group col-3">
+                        <label htmlFor="">{t("CloseT")}</label>
                         <input
                           {...register("closeTime", { required: false })}
                           type="text"
@@ -647,7 +737,7 @@ const ViewRestaurant = () => {
                         <button
                           className="comman_btn d-inline-flex"
                           type="submit">
-                          <span>Save Details</span>
+                          <span>{t("Save")}</span>
                         </button>
                         <button
                           className="comman_btn d-inline-flex d-none"

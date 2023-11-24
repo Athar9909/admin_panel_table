@@ -7,8 +7,8 @@ import {
   DashboardData,
   exportBranchData,
   exportOrderData,
-  exportTransactionData,
 } from "../adminLogin/httpServicesAdmin/adminApis";
+import { t } from "i18next";
 
 const Dashboard = () => {
   const [slide, setSlide] = useState("Dash");
@@ -97,7 +97,7 @@ const Dashboard = () => {
                     </div>
                     <div className="col-12">
                       <div className="dashboard_boxcontent text-center">
-                        <h2>Dining orders</h2>
+                        <h2>{t("Dining")}</h2>
                         <span>{count?.diningOrders}</span>
                       </div>
                     </div>
@@ -119,7 +119,7 @@ const Dashboard = () => {
                     </div>
                     <div className="col-12">
                       <div className="dashboard_boxcontent text-center">
-                        <h2>takeaway orders</h2>
+                        <h2>{t("Takeaway")}</h2>
                         <span>{count?.takeAwayOrders}</span>
                       </div>
                     </div>
@@ -142,7 +142,7 @@ const Dashboard = () => {
                     </div>
                     <div className="col-12">
                       <div className="dashboard_boxcontent text-center">
-                        <h2>restaurant</h2>
+                        <h2>{t("Restaurant")}</h2>
                         <span>{count?.totalRestaurants}</span>
                       </div>
                     </div>
@@ -154,14 +154,14 @@ const Dashboard = () => {
             <div className="col-12 design_outter_comman shadow">
               <div className="row comman_header justify-content-between">
                 <div className="col-auto">
-                  <h2>Latest Orders</h2>
+                  <h2>{t("Latest")}</h2>
                 </div>
               </div>
               <form
                 className="form-design py-4 px-3 help-support-form row align-items-end justify-content-between"
                 action="">
                 <div className="form-group mb-0 col-5">
-                  <label htmlFor="">From</label>
+                  <label htmlFor="">{t("from")}</label>
                   <input
                     type="date"
                     className="form-control"
@@ -172,7 +172,7 @@ const Dashboard = () => {
                   />
                 </div>
                 <div className="form-group mb-0 col-5">
-                  <label htmlFor="">To</label>
+                  <label htmlFor="">{t("To")}</label>
                   <input
                     type="date"
                     className="form-control"
@@ -188,7 +188,7 @@ const Dashboard = () => {
                       getAllOrders();
                     }}
                     className="comman_btn text-decoration-none">
-                    <span>Search</span>
+                    <span>{t("Search")}</span>
                   </a>
                 </div>
               </form>
@@ -198,14 +198,14 @@ const Dashboard = () => {
                     <table className="table mb-0">
                       <thead>
                         <tr>
-                          <th>Order Id</th>
-                          <th>Restaurant Address</th>
+                          <th>{t("OrderId")}</th>
+                          <th>{t("RestAddress")}</th>
                           {/* <th>Customer Name</th> */}
-                          <th>Mobile Number</th>
+                          <th>{t("No_")}</th>
                           {/* <th>Order Details</th> */}
-                          <th>Pickup Time</th>
+                          <th>{t("Time")}</th>
                           {/* <th>Status</th> */}
-                          <th>Action</th>
+                          <th>{t("Action")}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -240,7 +240,7 @@ const Dashboard = () => {
                                     `/admin/dashboard/orders/view/${item?._id}`
                                   )
                                 }>
-                                <span>View</span>
+                                <span>{t("View")}</span>
                               </a>
                             </td>
                           </tr>

@@ -35,7 +35,7 @@ const Login = () => {
         confirmButtonColor: "#e25829",
       });
       localStorage.setItem("token-admin", res.data?.results.token);
-      navigate("/admin/language-select");
+      navigate("/admin/dashboard");
     }
   };
 

@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import classNames from "classnames";
 import Profile from "../Profile";
 import { AllNotifications } from "../adminLogin/httpServicesAdmin/adminApis";
+import { t } from "i18next";
 
 const Notifications = () => {
   const [slide, setSlide] = useState("NotiManage");
@@ -56,7 +57,7 @@ const Notifications = () => {
                 <div className="col-12 design_outter_comman shadow">
                   <div className="row comman_header justify-content-between">
                     <div className="col">
-                      <h2>Notifications Management</h2>
+                      <h2>{t("NotiM")}</h2>
                     </div>
                     <div className="col-3"></div>
                   </div>
@@ -101,11 +102,13 @@ const Notifications = () => {
                         <table className="table mb-0">
                           <thead>
                             <tr>
-                              <th>Date</th>
-                              <th>Order Id</th>
-                              <th>Restaurant Name</th>
-                              <th>Title</th>
-                              <th>Description</th>
+                              <th>{t("Date")}</th>
+                              <th>{t("OrderId")}</th>
+                              <th>{t("RestN")}</th>
+                              <th>Title (en)</th>
+                              <th>{t("Title")}</th>
+                              <th>Description (en)</th>
+                              <th>{t("Desc")}</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -126,7 +129,9 @@ const Notifications = () => {
                                 <td>{item?.restaurantId?.restaurant_name}</td>
 
                                 <td>{item?.title_en}</td>
+                                <td>{item?.title_ar}</td>
                                 <td>{item?.description_en}</td>
+                                <td>{item?.description_ar}</td>
                                 {/* <td>
                                   <a
                                     className="comman_btn table_viewbtn"

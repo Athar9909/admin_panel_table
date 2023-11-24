@@ -8,6 +8,7 @@ import {
   AllTakeawayOrders,
   AllTransactions,
 } from "../adminLogin/httpServicesAdmin/adminApis";
+import { t } from "i18next";
 
 const AllTransaction = () => {
   const [slide, setSlide] = useState("transManage");
@@ -59,7 +60,7 @@ const AllTransaction = () => {
                 <div className="col-12 design_outter_comman shadow">
                   <div className="row comman_header justify-content-between">
                     <div className="col">
-                      <h2>Transaction Management</h2>
+                      <h2>{t("TransM")} </h2>
                     </div>
                     <div className="col-3"></div>
                   </div>
@@ -67,7 +68,7 @@ const AllTransaction = () => {
                     className="form-design py-4 px-3 help-support-form row align-items-end justify-content-between"
                     action="">
                     <div className="form-group mb-0 col-5">
-                      <label htmlFor="">From</label>
+                      <label htmlFor="">{t("from")}</label>
                       <input
                         type="date"
                         className="form-control"
@@ -78,7 +79,7 @@ const AllTransaction = () => {
                       />
                     </div>
                     <div className="form-group mb-0 col-5">
-                      <label htmlFor="">To</label>
+                      <label htmlFor="">{t("To")}</label>
                       <input
                         type="date"
                         className="form-control"
@@ -94,7 +95,7 @@ const AllTransaction = () => {
                           getAllTransaction();
                         }}
                         className="comman_btn text-decoration-none">
-                        <span>Search</span>
+                        <span>{t("Search")}</span>
                       </a>
                     </div>
                   </form>
@@ -104,13 +105,13 @@ const AllTransaction = () => {
                         <table className="table mb-0">
                           <thead>
                             <tr>
-                              <th>Date</th>
-                              <th>Restaurant Name</th>
-                              <th>Table Id</th>
-                              <th>Order Type</th>
-                              <th>Transaction Id</th>
-                              <th>Order Id</th>
-                              <th>Amount</th>
+                              <th>{t("Date")}</th>
+                              <th>{t("RestN")}</th>
+                              <th>{t("TableId")}</th>
+                              <th>{t("OrderType")}</th>
+                              <th>{t("TransId")}</th>
+                              <th>{t("OrderId")}</th>
+                              <th>{t("Amount")}</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -149,7 +150,7 @@ const AllTransaction = () => {
                   </div>
                   <div className="row Total_amt mx-0 py-3">
                     <div className="col-6">
-                      <strong>Total Amount: </strong>
+                      <strong>{t("Total")} {t("Amount")}: </strong>
                     </div>
                     <div className="col-6 text-end">
                       <span>{List?.total} EGP</span>

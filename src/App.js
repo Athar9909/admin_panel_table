@@ -13,12 +13,34 @@ import ForgotPass from "./Panel/adminComp/adminLogin/forgotPass";
 import OtpVerify from "./Panel/adminComp/adminLogin/OtpVerify";
 import ResetPassword from "./Panel/adminComp/adminLogin/ResetPassword";
 import Notifications from "./Panel/adminComp/Notifications/Notifications";
-
+import { useEffect, useState } from "react";
+import Profile from "./Panel/adminComp/Profile";
+import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil";
+import { LngState } from "../src/atom";
+import Cookies from "js-cookie";
 function App() {
+  const Lang = useRecoilValue(LngState);
+  const setLang = useSetRecoilState(LngState);
+
+  console.log(Lang);
+
+  const [currentLangCode, setCurrentLangCode] = useState(
+    Cookies.get("i18nextLng") || "en"
+  );
+
+  useEffect(() => {
+    if (currentLangCode === "ar") {
+      document.body.dir = "rtl";
+    } else {
+      document.body.dir = "ltr";
+    }
+  }, [currentLangCode, Lang]);
+
   return (
-    <div className="App">
+    <div className={currentLangCode === "ar" ? "App arabicRtl" : "App"}>
       <BrowserRouter>
         <Routes>
+          <Route path="/ProfileKdif" element={<Profile />} />
           <Route path="/" element={<Login />} />
           <Route path="/admin/login" element={<Login />} />
           <Route path="/admin/login/forgot-pass" element={<ForgotPass />} />

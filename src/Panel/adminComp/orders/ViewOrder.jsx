@@ -8,6 +8,7 @@ import {
   AllTakeawayOrders,
   OrdersDetails,
 } from "../adminLogin/httpServicesAdmin/adminApis";
+import { t } from "i18next";
 
 const ViewOrder = () => {
   const [slide, setSlide] = useState("takeManage");
@@ -51,7 +52,9 @@ const ViewOrder = () => {
                 <div className="col-12 design_outter_comman shadow mb-4 toggle_set">
                   <div className="row comman_header justify-content-between">
                     <div className="col-auto">
-                      <h2>{order?.type} Order Details </h2>
+                      <h2>
+                        {order?.type === "Dining" ? t("Dining") : t("Takeaway")}
+                      </h2>
                     </div>
                   </div>
                   <div className="row">
@@ -69,7 +72,7 @@ const ViewOrder = () => {
                       <div className="col-10">
                         <div className="row">
                           <div className="form-group col-6">
-                            <label htmlFor="">Order Id</label>
+                            <label htmlFor="">{t("OrderId")} </label>
                             <input
                               type="text"
                               className="form-control"
@@ -79,7 +82,7 @@ const ViewOrder = () => {
                             />
                           </div>
                           <div className="form-group col-6">
-                            <label htmlFor="">Restaurant Address</label>
+                            <label htmlFor="">{t("RestAddress")}</label>
                             <input
                               type="text"
                               className="form-control"
@@ -92,7 +95,7 @@ const ViewOrder = () => {
                           </div>
 
                           <div className="form-group col-6">
-                            <label htmlFor="">Table Id</label>
+                            <label htmlFor="">{t("TableId")}</label>
                             <input
                               type="text"
                               className="form-control"
@@ -122,7 +125,7 @@ const ViewOrder = () => {
                             />
                           </div> */}
                           <div className="form-group col-6">
-                            <label htmlFor="">Order Details</label>
+                            <label htmlFor="">{t("Details")}</label>
                             <input
                               type="text"
                               className="form-control"
@@ -134,7 +137,7 @@ const ViewOrder = () => {
                             />
                           </div>
                           <div className="form-group col-6">
-                            <label htmlFor="">Order Amount</label>
+                            <label htmlFor=""> {t("Amount")}</label>
                             <input
                               type="text"
                               className="form-control"
@@ -144,7 +147,7 @@ const ViewOrder = () => {
                             />
                           </div>
                           <div className="form-group col-6">
-                            <label htmlFor="">Pickup Time</label>
+                            <label htmlFor="">{t("Time")}</label>
                             <input
                               type="text"
                               className="form-control"
@@ -154,7 +157,7 @@ const ViewOrder = () => {
                             />
                           </div>
                           <div className="form-group col-6">
-                            <label htmlFor="">Status</label>
+                            <label htmlFor="">{t("Status")}</label>
                             <input
                               type="text"
                               className="form-control"
