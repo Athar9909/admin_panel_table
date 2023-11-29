@@ -86,7 +86,7 @@ const ViewRestaurant = () => {
     formData.append("restaurant_name_ar", data?.name_ar);
     formData.append("restaurant_address_ar", data?.address_ar);
     formData.append("restaurant_description_ar", data?.desc_ar);
-    formData.append("country_code", data?.code);
+    formData.append("country_code", data?.code?.slice(1));
     formData.append("owner_name", data?.owner);
     formData.append("owner_name_ar", data?.owner_ar);
     formData.append("opening_time", data?.opTime);
